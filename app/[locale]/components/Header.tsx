@@ -94,7 +94,7 @@ export function Header() {
             >
               <div className="relative w-[300px] h-[63px]">
                 <Image
-                  src="/logoHeader1.png"
+                  src="/logoheader1.png"
                   alt="LandStarkBau Logo"
                   className="object-contain"
                   fill
