@@ -92,7 +92,7 @@ export function Header() {
               href={`/${locale}`}
               className="group relative z-10 flex items-center"
             >
-              <div className="relative w-[300px] h-[63px]">
+              <div className="relative w-[300px] h-[63px] max-[390px]:w-[220px] max-[390px]:h-[46px]">
                 <Image
                   src="/logoheader1.png"
                   alt="LandStarkBau Logo"
