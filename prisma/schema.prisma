@@ -1,0 +1,57 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  number      Int      @unique
+  
+  // Німецькі поля
+  nameDe        String
+  subtitleDe    String?
+  locationDe    String
+  descriptionDe String
+  
+  // Англійські поля
+  nameEn        String
+  subtitleEn    String?
+  locationEn    String
+  descriptionEn String
+  
+  // Українські поля
+  nameUa        String
+  subtitleUa    String?
+  locationUa    String
+  descriptionUa String
+  
+  // Категорії (три мови)
+  categoryDe    String
+  categoryEn    String
+  categoryUa    String
+  
+  // Послуги (масиви в трьох мовах)
+  servicesDe    Json     @default("[]")
+  servicesEn    Json     @default("[]")
+  servicesUa    Json     @default("[]")
+  
+  // Матеріали (масиви в трьох мовах)
+  materialsDe   Json     @default("[]")
+  materialsEn   Json     @default("[]")
+  materialsUa   Json     @default("[]")
+  
+  // Спільні поля
+  imageUrl      String
+  thumbnailUrl  String
+  region        String?
+  area          String?
+  year          Int?
+  gallery       Json     @default("[]")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
