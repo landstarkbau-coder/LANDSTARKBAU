@@ -264,7 +264,7 @@ const projects = [
     '/projects/pr3/pr31.png',
     '/projects/pr3/pr32.jpg',
     '/projects/pr3/pr33.jpg',
-    '/projects/pr3/pr34.jpg',
+    '/projects/pr3/pr34.png',
   ],
 },
   {
