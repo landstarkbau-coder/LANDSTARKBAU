@@ -16,7 +16,7 @@ export default function DatenschutzPage() {
       subtitle: 'Informationen zum Datenschutz',
       intro: 'Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TMG).',
       responsible: 'Verantwortlicher für die Datenverarbeitung',
-      responsibleText: 'LANDSTARKBAU, Marienplatz 1, 80331 München, (+49) 016 110 10 30, info@germangardens.de',
+      responsibleText: 'LANDSTARKBAU, Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland, (+49) 016 110 10 30, landstarkbau@gmail.com',
       dataCollection: 'Erhebung und Speicherung personenbezogener Daten',
       dataCollectionText: 'Beim Besuch unserer Website werden durch den von Ihnen verwendeten Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sogenannten Logfile gespeichert. Folgende Daten werden dabei ohne Ihr Zutun erfasst und bis zur automatisierten Löschung gespeichert:',
       dataList: [
@@ -44,7 +44,7 @@ export default function DatenschutzPage() {
       subtitle: 'Information about data protection',
       intro: 'The protection of your personal data is important to us. We process your data exclusively on the basis of legal provisions (GDPR, TMG).',
       responsible: 'Responsible for data processing',
-      responsibleText: 'LANDSTARKBAU, Marienplatz 1, 80331 Munich, (+49) 016 110 10 30, info@germangardens.de',
+      responsibleText: 'LANDSTARKBAU, Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland, (+49) 016 110 10 30, landstarkbau@gmail.com',
       dataCollection: 'Collection and storage of personal data',
       dataCollectionText: 'When you visit our website, information is automatically sent to the server of our website by the browser you use. This information is temporarily stored in a so-called log file. The following data is collected without your intervention and stored until automated deletion:',
       dataList: [
@@ -72,7 +72,7 @@ export default function DatenschutzPage() {
       subtitle: 'Інформація про захист даних',
       intro: 'Захист ваших персональних даних є для нас важливим. Ми обробляємо ваші дані виключно на підставі законодавчих положень (GDPR, TMG).',
       responsible: 'Відповідальний за обробку даних',
-      responsibleText: 'LANDSTARKBAU, Marienplatz 1, 80331 Мюнхен, (+49) 016 110 10 30, info@germangardens.de',
+      responsibleText: 'LANDSTARKBAU, Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland, (+49) 016 110 10 30, landstarkbau@gmail.com',
       dataCollection: 'Збір та зберігання персональних даних',
       dataCollectionText: 'Під час відвідування нашого веб-сайту інформація автоматично надсилається на сервер нашого веб-сайту через ваш браузер. Ця інформація тимчасово зберігається в так званому файлі журналу. Наступні дані збираються без вашої участі та зберігаються до автоматичного видалення:',
       dataList: [

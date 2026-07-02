@@ -108,7 +108,7 @@ export function Footer() {
             
             {/* Соціальні мережі */}
             <div className="flex gap-3 pt-2">
-              <a href="#" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
+              <a href="https://www.facebook.com/share/1HM4GpLDBU" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
                 isDark 
                   ? 'border-white/20 hover:bg-white/10 hover:border-white/40' 
                   : 'border-gray-300 hover:bg-gray-200 hover:border-gray-400'
@@ -117,7 +117,7 @@ export function Footer() {
                   <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.99h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.99C18.343 21.128 22 16.991 22 12z"/>
                 </svg>
               </a>
-              <a href="#" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
+              <a href="mailto:landstarkbau@gmail.com" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
                 isDark 
                   ? 'border-white/20 hover:bg-white/10 hover:border-white/40' 
                   : 'border-gray-300 hover:bg-gray-200 hover:border-gray-400'
@@ -126,7 +126,7 @@ export function Footer() {
                   <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
                 </svg>
               </a>
-              <a href="#" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
+              <a href="https://www.instagram.com/blagostroi_?igsh=YTF6NGh1Zzl3YWNs&utm_source=ig_contact_invite" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
                 isDark 
                   ? 'border-white/20 hover:bg-white/10 hover:border-white/40' 
                   : 'border-gray-300 hover:bg-gray-200 hover:border-gray-400'
@@ -188,7 +188,7 @@ export function Footer() {
                 <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-white/60' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@germangardens.de" className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white' : 'text-gray-500 hover:text-gray-700'}`}>
+                <a href="mailto:landstarkbau@gmail.com" className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white' : 'text-gray-500 hover:text-gray-700'}`}>
                   {t('email')}
                 </a>
               </li>

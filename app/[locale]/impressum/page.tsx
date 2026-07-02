@@ -15,13 +15,13 @@ export default function ImpressumPage() {
       title: 'Impressum',
       subtitle: 'Angaben gemäß § 5 TMG',
       company: 'LANDSTARKBAU',
-      address: 'Marienplatz 1, 80331 München',
+      address: 'Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland',
       phone: '(+49) 016 110 10 30',
-      email: 'info@germangardens.de',
-      taxId: 'Steuernummer: 123/456/78901',
-      vatId: 'USt-IdNr.: DE123456789',
-      register: 'Handelsregister: Amtsgericht München, HRB 123456',
-      ceo: 'Geschäftsführer: Max Mustermann',
+      email: 'landstarkbau@gmail.com',
+    //   taxId: 'Steuernummer: 123/456/78901',
+    //   vatId: 'USt-IdNr.: DE123456789',
+    //   register: 'Handelsregister: Amtsgericht München, HRB 123456',
+      ceo: 'Geschäftsführer: Viacheslav Chaikovskyi',
       disclaimer: 'Haftungsausschluss',
       disclaimerText: 'Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.',
       copyright: 'Urheberrecht',
@@ -32,13 +32,13 @@ export default function ImpressumPage() {
       title: 'Imprint',
       subtitle: 'Information according to § 5 TMG',
       company: 'LANDSTARKBAU',
-      address: 'Marienplatz 1, 80331 Munich',
+      address: 'Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland',
       phone: '(+49) 016 110 10 30',
-      email: 'info@germangardens.de',
-      taxId: 'Tax number: 123/456/78901',
-      vatId: 'VAT ID: DE123456789',
-      register: 'Commercial register: Munich District Court, HRB 123456',
-      ceo: 'Managing Director: Max Mustermann',
+      email: 'landstarkbau@gmail.com',
+    //   taxId: 'Tax number: 123/456/78901',
+    //   vatId: 'VAT ID: DE123456789',
+    //   register: 'Commercial register: Munich District Court, HRB 123456',
+      ceo: 'Managing Director: Viacheslav Chaikovskyi',
       disclaimer: 'Disclaimer',
       disclaimerText: 'The contents of this website have been created with the greatest possible care. However, we cannot guarantee the accuracy, completeness and timeliness of the content.',
       copyright: 'Copyright',
@@ -49,13 +49,13 @@ export default function ImpressumPage() {
       title: 'Імпресум',
       subtitle: 'Інформація згідно з § 5 TMG',
       company: 'LANDSTARKBAU',
-      address: 'Marienplatz 1, 80331 Мюнхен',
+      address: 'Generaloberst-Beck-Straße 14, 55129 Mainz Deutschland',
       phone: '(+49) 016 110 10 30',
-      email: 'info@germangardens.de',
-      taxId: 'Податковий номер: 123/456/78901',
-      vatId: 'ПДВ-ідент.: DE123456789',
-      register: 'Торговий реєстр: Окружний суд Мюнхена, HRB 123456',
-      ceo: 'Керуючий директор: Max Mustermann',
+      email: 'landstarkbau@gmail.com',
+    //   taxId: 'Податковий номер: 123/456/78901',
+    //   vatId: 'ПДВ-ідент.: DE123456789',
+    //   register: 'Торговий реєстр: Окружний суд Мюнхена, HRB 123456',
+      ceo: 'Керуючий директор: Viacheslav Chaikovskyi ',
       disclaimer: 'Відмова від відповідальності',
       disclaimerText: 'Зміст цього веб-сайту створено з максимальною ретельністю. Однак ми не можемо гарантувати точність, повноту та актуальність інформації.',
       copyright: 'Авторське право',
@@ -104,15 +104,15 @@ export default function ImpressumPage() {
 
             <div className={`pt-4 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div>
+                {/* <div>
                   <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t.taxId}</p>
                 </div>
                 <div>
                   <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t.vatId}</p>
-                </div>
-                <div className="md:col-span-2">
+                </div> */}
+                {/* <div className="md:col-span-2">
                   <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t.register}</p>
-                </div>
+                </div> */}
                 <div className="md:col-span-2">
                   <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t.ceo}</p>
                 </div>

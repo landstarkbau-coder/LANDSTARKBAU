@@ -98,15 +98,15 @@ export function FAQSection() {
         </div>
         
         {/* Сітка FAQ - два стовпці */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+       <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4 md:gap-6">
           {faqData.map((item, idx) => (
             <div 
               key={item.id}
               className="group"
               style={{
-                animation: isVisible ? `fadeInUp 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
-                opacity: 0,
-              }}
+  animation: isVisible ? `fadeInUp 0.5s ease-out ${idx * 0.05}s both` : 'none',
+  opacity: isVisible ? 1 : 0,
+}}
             >
               <button
                 onClick={() => toggleQuestion(item.id)}

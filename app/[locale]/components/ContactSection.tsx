@@ -128,7 +128,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className={`text-xs ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t('email')}</p>
-                  <a href="mailto:info@germangardens.de" className={`${isDark ? 'text-white hover:text-white/80' : 'text-gray-900 hover:text-gray-700'} transition-colors duration-300`}>
+                  <a href="mailto:landstarkbau@gmail.com" className={`${isDark ? 'text-white hover:text-white/80' : 'text-gray-900 hover:text-gray-700'} transition-colors duration-300`}>
                     {t('emailAddress')}
                   </a>
                 </div>
