@@ -126,7 +126,7 @@ export function Footer() {
                   <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
                 </svg>
               </a>
-              <a href="https://www.instagram.com/blagostroi_?igsh=YTF6NGh1Zzl3YWNs&utm_source=ig_contact_invite" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
+              <a href="https://www.instagram.com/landstarkbau?utm_source=qr" className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 group ${
                 isDark 
                   ? 'border-white/20 hover:bg-white/10 hover:border-white/40' 
                   : 'border-gray-300 hover:bg-gray-200 hover:border-gray-400'
@@ -180,7 +180,7 @@ export function Footer() {
                 <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-white/60' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+49891234567" className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white' : 'text-gray-500 hover:text-gray-700'}`}>
+                <a href="tel:+491601101030" className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white' : 'text-gray-500 hover:text-gray-700'}`}>
                   {t('phone')}
                 </a>
               </li>

@@ -149,7 +149,7 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     className={`${isDark ? 'text-white hover:text-white/80' : 'text-gray-900 hover:text-gray-700'} transition-colors duration-300`}
                   >
-                    @blagostroi_
+                    @landstarkbau_
                   </a>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     className={`${isDark ? 'text-white hover:text-white/80' : 'text-gray-900 hover:text-gray-700'} transition-colors duration-300`}
                   >
-                    Blagostroi
+                    landstarkbau
                   </a>
                 </div>
               </div>

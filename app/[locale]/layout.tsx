@@ -11,6 +11,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ScrollToHash } from "./components/ScrollToHash";
 import { ThemeProvider } from "../context/ThemeContext";
+import {StickyContact} from "./components/StickyContact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -142,6 +143,7 @@ export default async function RootLayout({
             <Footer />
 
             <ScrollToHash />
+             <StickyContact />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

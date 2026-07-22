@@ -293,3 +293,43 @@ input:focus, textarea:focus, select:focus {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* app/globals.css - додайте в кінець */
+
+/* Анімація для появи кнопок */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+/* Анімація пульсації */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.5;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
