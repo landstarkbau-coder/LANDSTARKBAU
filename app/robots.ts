@@ -3,16 +3,17 @@ import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: [
-        '/api/',
-        '/admin/',
-        '/_next/',
-        '/*.json$',
-      ],
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+        ],
+      },
+    ],
     sitemap: 'https://landstarkbau.de/sitemap.xml',
+    host: 'https://landstarkbau.de',
   }
 }
