@@ -11,7 +11,9 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ScrollToHash } from "./components/ScrollToHash";
 import { ThemeProvider } from "../context/ThemeContext";
-import {StickyContact} from "./components/StickyContact";
+import { StickyContact } from "./components/StickyContact";
+import { CookieConsent } from "./components/CookieConsent";
+import { AnalyticsGate } from "./components/AnalyticsGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -132,19 +134,29 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LPX6LEGMTD"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        {/* 1. Consent Mode default — ДО будь-яких GA скриптів */}
+        <Script id="consent-default" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-LPX6LEGMTD');
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              wait_for_update: 500
+            });
           `}
         </Script>
+
+        {/* 2. Банер згоди */}
+       
+
+        {/* 3. Google Analytics — завантажується ТІЛЬКИ після згоди */}
+        <AnalyticsGate gaId="G-LPX6LEGMTD" />
+
         <ThemeProvider>
+           <CookieConsent />
           <NextIntlClientProvider messages={messages}>
             <Header />
 
@@ -155,7 +167,7 @@ export default async function RootLayout({
             <Footer />
 
             <ScrollToHash />
-             <StickyContact />
+            <StickyContact />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

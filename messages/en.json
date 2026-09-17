@@ -183,5 +183,20 @@
    "metadata": {
     "title": "LANDSTARKBAU | Construction & Landscaping",
     "description": "Your reliable partner for high-quality landscape design, gardening and construction projects in Germany."
+  },
+  "cleaning": {
+    "subtitle": "Our Services",
+    "title": "Professional Cleaning",
+    "description1": "We offer professional cleaning services for private and commercial clients. Cleanliness, reliability and punctuality are our top priorities.",
+    "description2": "From regular maintenance cleaning to deep cleaning – we take care of cleanliness in your premises.",
+    "service1Title": "Commercial Cleaning",
+    "service1Desc": "Regular cleaning of offices, practices and commercial spaces.",
+    "service2Title": "Residential Cleaning",
+    "service2Desc": "Reliable cleaning for apartments and houses.",
+    "service3Title": "Window Cleaning",
+    "service3Desc": "Streak-free cleaning of windows and glass surfaces.",
+    "service4Title": "Deep Cleaning",
+    "service4Desc": "Intensive cleaning after moving, renovation or construction work.",
+    "cta": "Request a Quote"
   }
 }

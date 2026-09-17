@@ -6,6 +6,7 @@ import { ProcessSection } from './components/ProcessSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { FAQSection } from './components/FAQSection'
 import { ContactSection } from './components/ContactSection'
+import { CleaningSection } from './components/CleaningSection'
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
     <main>
       <Hero />
       <ServicesSection />
+      <CleaningSection/>
       <AboutSection />
       <ProcessSection />
       <TestimonialsSection />

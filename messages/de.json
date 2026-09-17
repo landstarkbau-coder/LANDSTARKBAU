@@ -184,5 +184,20 @@
    "metadata": {
     "title": "LANDSTARKBAU | Bau & Landschaftsgestaltung",
     "description": "Ihr zuverlässiger Partner für hochwertige Landschaftsgestaltung, Gartenbau und Bauprojekte in Deutschland."
+  },
+  "cleaning": {
+    "subtitle": "Unsere Leistungen",
+    "title": "Professionelle Reinigung",
+    "description1": "Wir bieten professionelle Reinigungsdienstleistungen für Privat- und Gewerbekunden. Sauberkeit, Zuverlässigkeit und Termintreue stehen bei uns an erster Stelle.",
+    "description2": "Von der regelmäßigen Unterhaltsreinigung bis zur Grundreinigung – wir kümmern uns um Sauberkeit in Ihren Räumlichkeiten.",
+    "service1Title": "Gewerbereinigung",
+    "service1Desc": "Regelmäßige Reinigung von Büros, Praxen und Gewerberäumen.",
+    "service2Title": "Privatreinigung",
+    "service2Desc": "Zuverlässige Reinigung für Wohnungen und Häuser.",
+    "service3Title": "Fensterreinigung",
+    "service3Desc": "Streifenfreie Reinigung von Fenstern und Glasflächen.",
+    "service4Title": "Grundreinigung",
+    "service4Desc": "Intensive Reinigung nach Umzug, Renovierung oder Bauarbeiten.",
+    "cta": "Angebot anfordern"
   }
 }

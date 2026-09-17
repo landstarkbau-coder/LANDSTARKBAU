@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import { useTheme } from '@/app/context/ThemeContext'
+import { CookieSettingsButton } from './CookieSettingsButton'
 
 export function Footer() {
   const [email, setEmail] = useState('')
@@ -264,7 +265,7 @@ export function Footer() {
           <p className={`text-xs tracking-wider ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
             © 2026 LANDSTARKBAU. {t('copyright')}
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <Link href={`/${locale}/impressum`} className={`text-xs transition-colors ${isDark ? 'text-white/30 hover:text-white' : 'text-gray-400 hover:text-gray-600'}`}>
               {t('impressum')}
             </Link>
@@ -274,6 +275,9 @@ export function Footer() {
             <Link href={`/${locale}/agb`} className={`text-xs transition-colors ${isDark ? 'text-white/30 hover:text-white' : 'text-gray-400 hover:text-gray-600'}`}>
               {t('agb')}
             </Link>
+
+            {/* GDPR: кнопка для зміни/відкликання згоди на cookies */}
+            <CookieSettingsButton isDark={isDark} />
           </div>
         </div>
         
