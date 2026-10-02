@@ -1,4 +1,4 @@
-// app/[locale]/components/CleaningSection.tsx
+// components/cleaning/CleaningServices.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -6,10 +6,10 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useTheme } from '@/app/context/ThemeContext'
 
-export function CleaningSection() {
+export function CleaningServices() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  const t = useTranslations('cleaningSection')
+  const t = useTranslations('cleaning.services')
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
@@ -23,11 +23,7 @@ export function CleaningSection() {
       },
       { threshold: 0.2 }
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -38,6 +34,10 @@ export function CleaningSection() {
     { key: 'service4', icon: '🧹' },
   ]
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section
       id="cleaning"
@@ -46,7 +46,6 @@ export function CleaningSection() {
         isDark ? 'bg-gray-900' : 'bg-white'
       }`}
     >
-      {/* Декоративний фон */}
       <div className="absolute inset-0">
         <div
           className={`absolute inset-0 bg-gradient-to-bl ${
@@ -101,7 +100,9 @@ export function CleaningSection() {
                 {t('title')}
               </h2>
               <div
-                className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mt-4`}
+                className={`w-16 h-px ${
+                  isDark ? 'bg-white/20' : 'bg-gray-300'
+                } mt-4`}
               />
             </div>
 
@@ -112,7 +113,6 @@ export function CleaningSection() {
             >
               {t('description1')}
             </p>
-
             <p
               className={`text-base leading-relaxed ${
                 isDark ? 'text-white/60' : 'text-gray-600'
@@ -123,7 +123,7 @@ export function CleaningSection() {
 
             {/* Список послуг */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {services.map((service) => (
+              {services.map((service, idx) => (
                 <div
                   key={service.key}
                   className={`flex items-start gap-3 p-4 rounded-xl border transition-colors duration-300 ${
@@ -131,6 +131,12 @@ export function CleaningSection() {
                       ? 'bg-white/5 border-white/10 hover:bg-white/10'
                       : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
                   }`}
+                  style={{
+                    animation: isVisible
+                      ? `fadeInUp 0.5s ease-out ${idx * 0.1}s both`
+                      : 'none',
+                    opacity: isVisible ? 1 : 0,
+                  }}
                 >
                   <div
                     className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg ${
@@ -160,8 +166,8 @@ export function CleaningSection() {
             </div>
 
             {/* CTA кнопка */}
-            <a
-              href={`/cleaning`}
+            <button
+              onClick={scrollToContact}
               className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 ${
                 isDark
                   ? 'bg-white/10 text-white/80 hover:bg-white/20'
@@ -182,7 +188,7 @@ export function CleaningSection() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </button>
           </div>
 
         </div>

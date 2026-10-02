@@ -1,0 +1,46 @@
+-- CreateTable
+CREATE TABLE "Project" (
+    "id" TEXT NOT NULL,
+    "number" INTEGER NOT NULL,
+    "nameDe" TEXT NOT NULL,
+    "subtitleDe" TEXT,
+    "locationDe" TEXT NOT NULL,
+    "descriptionDe" TEXT NOT NULL,
+    "nameEn" TEXT NOT NULL,
+    "subtitleEn" TEXT,
+    "locationEn" TEXT NOT NULL,
+    "descriptionEn" TEXT NOT NULL,
+    "nameUa" TEXT NOT NULL,
+    "subtitleUa" TEXT,
+    "locationUa" TEXT NOT NULL,
+    "descriptionUa" TEXT NOT NULL,
+    "nameRu" TEXT NOT NULL,
+    "subtitleRu" TEXT,
+    "locationRu" TEXT NOT NULL,
+    "descriptionRu" TEXT NOT NULL,
+    "categoryDe" TEXT NOT NULL,
+    "categoryEn" TEXT NOT NULL,
+    "categoryUa" TEXT NOT NULL,
+    "categoryRu" TEXT NOT NULL,
+    "servicesDe" JSONB NOT NULL DEFAULT '[]',
+    "servicesEn" JSONB NOT NULL DEFAULT '[]',
+    "servicesUa" JSONB NOT NULL DEFAULT '[]',
+    "servicesRu" JSONB NOT NULL DEFAULT '[]',
+    "materialsDe" JSONB NOT NULL DEFAULT '[]',
+    "materialsEn" JSONB NOT NULL DEFAULT '[]',
+    "materialsUa" JSONB NOT NULL DEFAULT '[]',
+    "materialsRu" JSONB NOT NULL DEFAULT '[]',
+    "imageUrl" TEXT NOT NULL,
+    "thumbnailUrl" TEXT NOT NULL,
+    "region" TEXT,
+    "area" TEXT,
+    "year" INTEGER,
+    "gallery" JSONB NOT NULL DEFAULT '[]',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Project_number_key" ON "Project"("number");

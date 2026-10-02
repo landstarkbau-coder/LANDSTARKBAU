@@ -71,7 +71,7 @@ export function Footer() {
   const navItems = [
     { name: t('navProjects'), href: `/${locale}/projects` },
     { name: t('navServices'), href: `/${locale}#services` },
-    { name: t('navProcess'), href: `/${locale}#our-process` },
+    { name: t('navProcess'), href: `/${locale}/cleaning` },
     { name: t('navAbout'), href: `/${locale}#about-us` },
     { name: t('navTestimonials'), href: `/${locale}#testimonials` },
     { name: t('navFaq'), href: `/${locale}#faq` },

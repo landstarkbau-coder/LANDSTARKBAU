@@ -2,7 +2,7 @@
   "header": {
     "projects": "PROJEKTE",
     "services": "LEISTUNGEN",
-    "ourProcess": "UNSERE PHASEN",
+    "ourProcess": "REINIGUNG",
     "aboutUs": "ÜBER UNS",
     "testimonials": "BEWERTUNGEN",
     "faq": "FAQ",
@@ -30,7 +30,7 @@
     "facebookLink": "https://www.facebook.com/share/1HM4GpLDBU",
     "navProjects": "PROJEKTE",
     "navServices": "LEISTUNGEN",
-    "navProcess": "UNSERE PHASEN",
+    "navProcess": "REINIGUNG",
     "navAbout": "ÜBER UNS",
     "navTestimonials": "BEWERTUNGEN",
     "navFaq": "FAQ",
@@ -185,7 +185,7 @@
     "title": "LANDSTARKBAU | Bau & Landschaftsgestaltung",
     "description": "Ihr zuverlässiger Partner für hochwertige Landschaftsgestaltung, Gartenbau und Bauprojekte in Deutschland."
   },
-  "cleaning": {
+  "cleaningSection": {
     "subtitle": "Unsere Leistungen",
     "title": "Professionelle Reinigung",
     "description1": "Wir bieten professionelle Reinigungsdienstleistungen für Privat- und Gewerbekunden. Sauberkeit, Zuverlässigkeit und Termintreue stehen bei uns an erster Stelle.",
@@ -199,5 +199,112 @@
     "service4Title": "Grundreinigung",
     "service4Desc": "Intensive Reinigung nach Umzug, Renovierung oder Bauarbeiten.",
     "cta": "Angebot anfordern"
+  },
+  "cleaning": {
+    "hero": {
+      "subtitle": "Professionelle Reinigung",
+      "title": "Sauberkeit, der Sie vertrauen können",
+      "description": "Wir bringen Frische und Glanz in Ihren Raum zurück. Schnell, zuverlässig und detailorientiert.",
+      "ctaPrimary": "Reinigung buchen",
+      "ctaSecondary": "Unsere Leistungen",
+      "badge1": "500+ Kunden",
+      "badge2": "5 Jahre Erfahrung",
+      "badge3": "Öko-Produkte"
+    },
+    "services": {
+      "subtitle": "Unsere Leistungen",
+      "title": "Umfassende Reinigung für jeden Bedarf",
+      "description1": "Wir bieten ein komplettes Spektrum an Reinigungsdienstleistungen für Privat und Gewerbe. Unser Team arbeitet mit moderner Ausrüstung und umweltfreundlichen Produkten.",
+      "description2": "Jedes Projekt wird mit Liebe zum Detail und Respekt für Ihren Raum durchgeführt.",
+      "cta": "Mehr erfahren",
+      "service1Title": "Büros & Geschäftszentren",
+      "service1Desc": "Umfassende Reinigung von Arbeitsräumen jeder Größe.",
+      "service2Title": "Wohnungen & Häuser",
+      "service2Desc": "Regelmäßige und Grundreinigung von Wohnräumen.",
+      "service3Title": "Fensterreinigung",
+      "service3Desc": "Professionelle Reinigung von Fenstern, Schaufenstern und Glasfassaden.",
+      "service4Title": "Grundreinigung",
+      "service4Desc": "Gründliche Reinigung aller Oberflächen nach Renovierung oder Umzug."
+    },
+    "whyUs": {
+      "subtitle": "Warum wir",
+      "title": "Vorteile, die Sie spüren werden",
+      "description": "Wir kümmern uns um Qualität, Sicherheit und Ihren Komfort bei jedem Schritt.",
+      "item1Title": "Öko-Produkte",
+      "item1Desc": "Sicher für Kinder, Haustiere und Umwelt.",
+      "item2Title": "Qualifiziertes Personal",
+      "item2Desc": "Geschulte und geprüfte Fachkräfte.",
+      "item3Title": "Versicherung",
+      "item3Desc": "Volle Verantwortung für Ihren Raum.",
+      "item4Title": "Flexibler Zeitplan",
+      "item4Desc": "Wir arbeiten zu Ihrer Wunschzeit.",
+      "item5Title": "Moderne Ausrüstung",
+      "item5Desc": "Professionelle Technik und Chemie.",
+      "item6Title": "Qualitätsgarantie",
+      "item6Desc": "Kostenlose Nachbesserung bei Bedarf."
+    },
+    "process": {
+      "subtitle": "So arbeiten wir",
+      "title": "Ein einfacher Prozess — von der Anfrage bis zum Ergebnis",
+      "description": "Vier Schritte, die die Zusammenarbeit mit uns einfach und transparent machen.",
+      "step1Title": "Anfrage",
+      "step1Desc": "Senden Sie eine Anfrage online oder telefonisch.",
+      "step2Title": "Kalkulation",
+      "step2Desc": "Wir berechnen die Kosten und vereinbaren einen Termin.",
+      "step3Title": "Reinigung",
+      "step3Desc": "Wir liefern Qualitätsarbeit pünktlich.",
+      "step4Title": "Abnahme",
+      "step4Desc": "Sie prüfen das Ergebnis gemeinsam mit uns."
+    },
+    "gallery": {
+      "subtitle": "Unsere Arbeiten",
+      "title": "Vorher & Nachher",
+      "description": "Sehen Sie, wie sich ein Raum nach unserer Arbeit verändert.",
+      "before": "Vorher",
+      "after": "Nachher",
+      "item1": "Küche nach Renovierung",
+      "item2": "Wohnzimmer in der Wohnung",
+      "item3": "Büroraum",
+      "item4": "Badezimmer",
+      "item5": "Fenster im Geschäftszentrum",
+      "item6": "Gewerberaum"
+    },
+    "testimonials": {
+      "subtitle": "Bewertungen",
+      "title": "Was unsere Kunden sagen",
+      "description": "Wir sind stolz auf das Vertrauen derer, die uns immer wieder wählen.",
+      "project1": "Grundreinigung der Wohnung",
+      "text1": "Unglaubliches Ergebnis! Das Team arbeitete schnell und professionell. Die Wohnung ist blitzsauber und ich habe viel Freizeit gewonnen.",
+      "project2": "Büroreinigung",
+      "text2": "Wir bestellen regelmäßig die Büroreinigung. Immer pünktlich, qualitativ hochwertig und respektvoll gegenüber unserem Arbeitsplatz. Sehr empfehlenswert!",
+      "project3": "Fensterreinigung",
+      "text3": "Die Fenster in unserem Haus sind jetzt perfekt klar. Schnell, sauber, ohne Streifen. Vielen Dank!",
+      "project4": "Komplexe Reinigung",
+      "text4": "Professioneller Ansatz in jeder Phase. Von der Beratung bis zum Endergebnis — alles auf höchstem Niveau. Danke an das Team!"
+    },
+    "faq": {
+      "subtitle": "Fragen & Antworten",
+      "title": "Häufige Fragen",
+      "description": "Antworten auf die häufigsten Fragen zu unseren Reinigungsleistungen.",
+      "question1": "Wie lange dauert die Reinigung?",
+      "answer1": "Die Dauer hängt vom Umfang ab. Eine Standard-Wohnungsreinigung dauert 2-4 Stunden, eine Grundreinigung 4-8 Stunden. Die genaue Zeit wird nach der Bewertung vereinbart.",
+      "question2": "Welche Produkte verwenden Sie?",
+      "answer2": "Wir verwenden zertifizierte Öko-Produkte, sicher für Kinder, Haustiere und Allergiker. Auf Anfrage auch hypoallergene Varianten.",
+      "question3": "Kann ich kurzfristig buchen?",
+      "answer3": "Ja, wir nehmen dringende Aufträge an. Kontaktieren Sie uns und wir finden den nächsten freien Termin für Ihre Reinigung.",
+      "question4": "Sind Sie versichert?",
+      "answer4": "Ja, unsere Haftung ist versichert. Bei Schäden am Eigentum erstatten wir den Schaden vollständig.",
+      "question5": "Wie wird der Preis berechnet?",
+      "answer5": "Der Preis hängt von der Fläche, der Art der Reinigung und Zusatzleistungen ab. Wir berechnen die Kosten kostenlos nach Klärung der Details.",
+      "question6": "Kann ich regelmäßige Reinigung buchen?",
+      "answer6": "Natürlich. Wir bieten günstige Konditionen für regelmäßigen Service — wöchentlich, zweiwöchentlich oder monatlich.",
+      "moreQuestions": "Noch Fragen?",
+      "contactButton": "Kontaktieren Sie uns"
+    },
+    "finalCta": {
+      "title": "Bereit für einen sauberen Raum?",
+      "description": "Buchen Sie noch heute eine professionelle Reinigung — und spüren Sie den Unterschied morgen.",
+      "button": "Reinigung buchen"
+    }
   }
 }

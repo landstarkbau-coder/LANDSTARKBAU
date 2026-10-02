@@ -139,11 +139,13 @@ export default function ProjectsPage() {
         {projects.length === 0 && (
           <div className="text-center py-20">
             <p className={isDark ? 'text-white/50' : 'text-gray-600'}>
-              {locale === 'de' 
-                ? 'Keine Projekte gefunden.'
-                : locale === 'en'
-                ? 'No projects found.'
-                : 'Проектів не знайдено.'}
+               {locale === 'de'
+        ? 'Keine Projekte gefunden.'
+        : locale === 'en'
+        ? 'No projects found.'
+        : locale === 'ru'
+        ? 'Проекты не найдены.'
+        : 'Проектів не знайдено.'}
             </p>
           </div>
         )}

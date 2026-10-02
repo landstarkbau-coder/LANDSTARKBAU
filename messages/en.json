@@ -2,7 +2,7 @@
   "header": {
     "projects": "PROJECTS",
     "services": "SERVICES",
-    "ourProcess": "OUR PROCESS",
+    "ourProcess": "CLEANING",
     "aboutUs": "ABOUT US",
     "testimonials": "TESTIMONIALS",
     "faq": "FAQ",
@@ -30,7 +30,7 @@
     "facebookLink": "https://www.facebook.com/share/1HM4GpLDBU",
     "navProjects": "PROJECTS",
     "navServices": "SERVICES",
-    "navProcess": "OUR PROCESS",
+    "navProcess": "CLEANING",
     "navAbout": "ABOUT US",
     "navTestimonials": "TESTIMONIALS",
     "navFaq": "FAQ",
@@ -184,7 +184,7 @@
     "title": "LANDSTARKBAU | Construction & Landscaping",
     "description": "Your reliable partner for high-quality landscape design, gardening and construction projects in Germany."
   },
-  "cleaning": {
+  "cleaningSection": {
     "subtitle": "Our Services",
     "title": "Professional Cleaning",
     "description1": "We offer professional cleaning services for private and commercial clients. Cleanliness, reliability and punctuality are our top priorities.",
@@ -198,5 +198,112 @@
     "service4Title": "Deep Cleaning",
     "service4Desc": "Intensive cleaning after moving, renovation or construction work.",
     "cta": "Request a Quote"
+  },
+  "cleaning": {
+    "hero": {
+      "subtitle": "Professional Cleaning",
+      "title": "Cleanliness you can trust",
+      "description": "We bring freshness and shine back to your space. Fast, reliable, and detail-oriented.",
+      "ctaPrimary": "Book a cleaning",
+      "ctaSecondary": "Our services",
+      "badge1": "500+ clients",
+      "badge2": "5 years of experience",
+      "badge3": "Eco-friendly products"
+    },
+    "services": {
+      "subtitle": "Our Services",
+      "title": "Comprehensive cleaning for every need",
+      "description1": "We offer a full range of cleaning services for homes and businesses. Our team uses modern equipment and eco-friendly products.",
+      "description2": "Every project is handled with attention to detail and respect for your space.",
+      "cta": "Learn more",
+      "service1Title": "Offices & Business Centers",
+      "service1Desc": "Comprehensive cleaning of workspaces of any size.",
+      "service2Title": "Apartments & Houses",
+      "service2Desc": "Regular and deep cleaning of residential spaces.",
+      "service3Title": "Window Cleaning",
+      "service3Desc": "Professional cleaning of windows, storefronts and glass facades.",
+      "service4Title": "Deep Cleaning",
+      "service4Desc": "Thorough cleaning of all surfaces after renovation or moving."
+    },
+    "whyUs": {
+      "subtitle": "Why Us",
+      "title": "Benefits you will feel",
+      "description": "We care about quality, safety and your comfort at every step.",
+      "item1Title": "Eco-friendly products",
+      "item1Desc": "Safe for children, pets and the environment.",
+      "item2Title": "Qualified staff",
+      "item2Desc": "Trained and vetted professionals.",
+      "item3Title": "Property insurance",
+      "item3Desc": "Full responsibility for your space.",
+      "item4Title": "Flexible schedule",
+      "item4Desc": "We work at a time that suits you.",
+      "item5Title": "Modern equipment",
+      "item5Desc": "Professional tools and chemicals.",
+      "item6Title": "Quality guarantee",
+      "item6Desc": "Free follow-up if needed."
+    },
+    "process": {
+      "subtitle": "How We Work",
+      "title": "A simple process — from request to result",
+      "description": "Four steps that make working with us easy and transparent.",
+      "step1Title": "Request",
+      "step1Desc": "Submit a request online or by phone.",
+      "step2Title": "Estimate",
+      "step2Desc": "We calculate the cost and agree on a time.",
+      "step3Title": "Cleaning",
+      "step3Desc": "We deliver quality work on time.",
+      "step4Title": "Inspection",
+      "step4Desc": "You review the result together with us."
+    },
+    "gallery": {
+      "subtitle": "Our Work",
+      "title": "Before & After",
+      "description": "See how a space transforms after our work.",
+      "before": "Before",
+      "after": "After",
+      "item1": "Kitchen after renovation",
+      "item2": "Apartment living room",
+      "item3": "Office space",
+      "item4": "Bathroom",
+      "item5": "Windows in a business center",
+      "item6": "Commercial space"
+    },
+    "testimonials": {
+      "subtitle": "Testimonials",
+      "title": "What our clients say",
+      "description": "We are proud of the trust of those who choose us again and again.",
+      "project1": "Deep apartment cleaning",
+      "text1": "Incredible result! The team worked fast and professionally. The apartment is spotless and I gained so much free time.",
+      "project2": "Office cleaning",
+      "text2": "We order office cleaning regularly. Always on time, high quality and respectful of our workspace. Highly recommended!",
+      "project3": "Window cleaning",
+      "text3": "The windows in our house are perfectly clear now. Fast, neat, no streaks or marks. Thank you!",
+      "project4": "Comprehensive cleaning",
+      "text4": "Professional approach at every stage. From consultation to final result — everything at the highest level. Thanks to the team!"
+    },
+    "faq": {
+      "subtitle": "Q&A",
+      "title": "Frequently Asked Questions",
+      "description": "Answers to the most common questions about our cleaning services.",
+      "question1": "How long does cleaning take?",
+      "answer1": "Duration depends on the scope. Standard apartment cleaning takes 2-4 hours, deep cleaning — 4-8 hours. Exact time is agreed after evaluation.",
+      "question2": "What products do you use?",
+      "answer2": "We use certified eco-friendly products, safe for children, pets and people with allergies. Hypoallergenic options available on request.",
+      "question3": "Can I book urgently?",
+      "answer3": "Yes, we accept urgent bookings. Contact us and we will find the nearest available time for your cleaning.",
+      "question4": "Do you have insurance?",
+      "answer4": "Yes, our liability is insured. In case of property damage, we fully compensate for the losses.",
+      "question5": "How is the price calculated?",
+      "answer5": "The price depends on the area, type of cleaning and additional services. We calculate the cost free of charge after clarifying the details.",
+      "question6": "Can I book regular cleaning?",
+      "answer6": "Of course. We offer favorable terms for regular service — weekly, bi-weekly or monthly.",
+      "moreQuestions": "Still have questions?",
+      "contactButton": "Contact us"
+    },
+    "finalCta": {
+      "title": "Ready for a clean space?",
+      "description": "Book a professional cleaning today — and feel the difference tomorrow.",
+      "button": "Book a cleaning"
+    }
   }
 }
