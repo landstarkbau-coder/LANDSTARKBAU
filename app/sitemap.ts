@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next'
 // ⬇️ ВИПРАВЛЕНО - прибрано www, щоб відповідало metadataBase
 const BASE_URL = 'https://landstarkbau.de'
 
-const locales = ['de', 'en', 'uk']
+const locales = ['de', 'en', 'uk', 'ru']
 
 const staticPages = [
   {
@@ -59,6 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             de: `${BASE_URL}/de${page.path}`,
             en: `${BASE_URL}/en${page.path}`,
             uk: `${BASE_URL}/uk${page.path}`,
+            ru: `${BASE_URL}/ru${page.path}`,
           },
         },
       })
@@ -78,6 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             de: `${BASE_URL}/de/projects/${projectId}`,
             en: `${BASE_URL}/en/projects/${projectId}`,
             uk: `${BASE_URL}/uk/projects/${projectId}`,
+            ru: `${BASE_URL}/ru/projects/${projectId}`,
           },
         },
       })
