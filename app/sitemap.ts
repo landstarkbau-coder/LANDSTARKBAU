@@ -2,86 +2,80 @@
 
 import { MetadataRoute } from 'next'
 
-// ⬇️ ВИПРАВЛЕНО - прибрано www, щоб відповідало metadataBase
 const BASE_URL = 'https://landstarkbau.de'
-
 const locales = ['de', 'en', 'uk', 'ru']
 
 const staticPages = [
-  {
-    path: '',
-    priority: 1.0,
-    changeFrequency: 'weekly' as const,
-  },
-  {
-    path: '/projects',
-    priority: 0.9,
-    changeFrequency: 'weekly' as const,
-  },
-  {
-    path: '/impressum',
-    priority: 0.3,
-    changeFrequency: 'yearly' as const,
-  },
-  {
-    path: '/datenschutz',
-    priority: 0.3,
-    changeFrequency: 'yearly' as const,
-  },
-  {
-    path: '/agb',
-    priority: 0.3,
-    changeFrequency: 'yearly' as const,
-  },
+  { path: '',           priority: 1.0, changeFrequency: 'weekly'  as const },
+  { path: '/projects',  priority: 0.9, changeFrequency: 'weekly'  as const },
+  { path: '/cleaning',  priority: 0.9, changeFrequency: 'weekly'  as const },
+  { path: '/impressum', priority: 0.3, changeFrequency: 'yearly'  as const },
+  { path: '/datenschutz', priority: 0.3, changeFrequency: 'yearly' as const },
+  { path: '/agb',       priority: 0.3, changeFrequency: 'yearly'  as const },
+  { path: '/cookies',   priority: 0.3, changeFrequency: 'yearly'  as const },
 ]
 
-const projects = [
-  'cmqqwmynq0000n4uwecaeib90',
-  'cmqqwmyw00001n4uw2acyzzhe',
-  'cmqqwmz3x0002n4uwhguf4xqr',
-  'cmqqwmzbz0003n4uwkymhnqol',
-  'cmqqwmzk10004n4uw12ofb6ov',
-]
+// Допоміжна функція для генерації мовних alternates
+function buildAlternates(path: string) {
+  const languages: Record<string, string> = {}
+  locales.forEach((locale) => {
+    languages[locale] = `${BASE_URL}/${locale}${path}`
+  })
+  return { languages }
+}
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Отримуємо список проектів з API (або з БД)
+async function getProjects(): Promise<{ id: string; updatedAt?: string }[]> {
+  try {
+    // Якщо у вас є серверна функція для отримання проектів — використовуйте її.
+    // Наприклад: import { getProjects } from '@/lib/db' — і викликайте напряму.
+    
+    // Якщо ні — робимо fetch до вашого API:
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || BASE_URL
+    const res = await fetch(`${baseUrl}/api/projects`, {
+      next: { revalidate: 3600 }, // кешуємо на 1 годину
+    })
+    
+    if (!res.ok) return []
+    const projects = await res.json()
+    
+    return projects.map((p: any) => ({
+      id: p.id,
+      updatedAt: p.updatedAt,
+    }))
+  } catch {
+    return []
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemap: MetadataRoute.Sitemap = []
+  const now = new Date()
 
-  // Статичні сторінки
+  // 1. Статичні сторінки
   for (const locale of locales) {
     for (const page of staticPages) {
       sitemap.push({
         url: `${BASE_URL}/${locale}${page.path}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
-        alternates: {
-          languages: {
-            de: `${BASE_URL}/de${page.path}`,
-            en: `${BASE_URL}/en${page.path}`,
-            uk: `${BASE_URL}/uk${page.path}`,
-            ru: `${BASE_URL}/ru${page.path}`,
-          },
-        },
+        alternates: buildAlternates(page.path),
       })
     }
   }
 
-  // Сторінки проєктів
+  // 2. Сторінки проектів (динамічно)
+  const projects = await getProjects()
+  
   for (const locale of locales) {
-    for (const projectId of projects) {
+    for (const project of projects) {
       sitemap.push({
-        url: `${BASE_URL}/${locale}/projects/${projectId}`,
-        lastModified: new Date(),
+        url: `${BASE_URL}/${locale}/projects/${project.id}`,
+        lastModified: project.updatedAt ? new Date(project.updatedAt) : now,
         changeFrequency: 'monthly',
         priority: 0.8,
-        alternates: {
-          languages: {
-            de: `${BASE_URL}/de/projects/${projectId}`,
-            en: `${BASE_URL}/en/projects/${projectId}`,
-            uk: `${BASE_URL}/uk/projects/${projectId}`,
-            ru: `${BASE_URL}/ru/projects/${projectId}`,
-          },
-        },
+        alternates: buildAlternates(`/projects/${project.id}`),
       })
     }
   }

@@ -82,7 +82,7 @@ export function Header() {
   const languages = [
     { code: 'de', label: 'DE', fullLabel: 'Deutsch' },
     { code: 'en', label: 'EN', fullLabel: 'English' },
-    { code: 'ua', label: 'UA', fullLabel: 'Українська' },
+    { code: 'uk', label: 'UA', fullLabel: 'Українська' },
      { code: 'ru', label: 'RU', fullLabel: 'Русский' }
   ]
 
