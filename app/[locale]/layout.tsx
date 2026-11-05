@@ -13,7 +13,7 @@ import { ThemeProvider } from "./../context/ThemeContext";
 import { StickyContact } from "./components/StickyContact";
 import { CookieConsent } from "./components/CookieConsent";
 import { AnalyticsGate } from "./components/AnalyticsGate";
-import { ConsentScript } from "./components/ConsentScript"; // Перевірте, щоб цей файл існував
+import { ConsentScript } from "./components/ConsentScript";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +25,58 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// --- JSON-LD КОМПОНЕНТ ---
+function JsonLd({ locale }: { locale: string }) {
+  const descriptions: Record<string, string> = {
+    de: "Professioneller Garten- und Landschaftsbau in Bonn und Umgebung. LANDSTARKBAU realisiert hochwertige Gärten, Terrassen, Pflasterarbeiten, Außenanlagen und Bauprojekte für Privat- und Gewerbekunden.",
+    en: "Professional garden and landscape construction in Bonn and surroundings. LANDSTARKBAU creates high-quality gardens, terraces, paving, outdoor facilities, and construction projects for private and commercial clients.",
+    ru: "Профессиональное садово-ландшафтное строительство в Бонне и окрестностях. LANDSTARKBAU создает качественные сады, террасы, мощеные площадки и внешние объекты для частных и коммерческих клиентов.",
+    uk: "Професійне садово-ландшафтне будівництво в Бонні та околицях. LANDSTARKBAU створює якісні сади, тераси, мощені майданчики та зовнішні об'єкти для приватних і комерційних клієнтів.",
+  };
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://landstarkbau.de/#organization",
+    "name": "LANDSTARKBAU",
+    "description": descriptions[locale] || descriptions.de,
+    "url": "https://landstarkbau.de",
+    "telephone": "+491601101030",
+    "email": "landstarkbau@gmail.com",
+    "priceRange": "$$",
+    "image": "https://landstarkbau.de/og-image.png", // <-- Змінено на .png
+    "logo": "https://landstarkbau.de/logoheader1.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kölnstraße 502",
+      "addressLocality": "Bonn",
+      "postalCode": "53117",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.7565,
+      "longitude": 7.0785 
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bonn"
+    },
+    "sameAs": [
+      "https://www.instagram.com/landstarkbau",
+      "https://www.facebook.com/share/1HM4GpLDBU"
+    ]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// --- ГЕНЕРАЦІЯ МЕТАДАНИХ ---
 export async function generateMetadata({ 
   params 
 }: { 
@@ -42,50 +94,50 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://landstarkbau.de"),
     title: {
-      default: "LANDSTARKBAU | Garten- und Landschaftsbau",
+      default: "LANDSTARKBAU | Garten- und Landschaftsbau in Bonn",
       template: "%s | LANDSTARKBAU",
     },
     description:
-      "Professioneller Garten- und Landschaftsbau in Deutschland. LANDSTARKBAU realisiert hochwertige Gärten, Terrassen, Pflasterarbeiten, Außenanlagen und Bauprojekte für Privat- und Gewerbekunden.",
+      "Professioneller Garten- und Landschaftsbau in Bonn. LANDSTARKBAU realisiert hochwertige Gärten, Terrassen, Pflasterarbeiten, Außenanlagen und Bauprojekte für Privat- und Gewerbekunden.",
     applicationName: "LANDSTARKBAU",
     authors: [{ name: "LANDSTARKBAU", url: "https://landstarkbau.de" }],
     creator: "LANDSTARKBAU",
     publisher: "LANDSTARKBAU",
     category: "Construction",
     keywords: [
-      "Gartenbau",
-      "Landschaftsbau",
-      "Garten- und Landschaftsbau",
-      "Gartengestaltung",
-      "Terrassenbau",
-      "Pflasterarbeiten",
-      "Außenanlagen",
-      "Bauunternehmen",
-      "Deutschland",
-      "Mainz",
+      "Gartenbau Bonn",
+      "Landschaftsbau Bonn",
+      "Garten- und Landschaftsbau Bonn",
+      "Gartengestaltung Bonn",
+      "Terrassenbau Bonn",
+      "Pflasterarbeiten Bonn",
+      "Außenanlagen Bonn",
+      "Bauunternehmen Bonn",
+      "Gartenbau NRW",
+      "Landschaftsbau NRW",
+      "Deutschland"
     ],
-    // canonical ТУТ НЕ ВКАЗУЄМО! Він генерується на кожній сторінці окремо.
     openGraph: {
-      title: "LANDSTARKBAU | Garten- und Landschaftsbau",
+      title: "LANDSTARKBAU | Garten- und Landschaftsbau in Bonn",
       description:
-        "Professioneller Garten- und Landschaftsbau in Deutschland. Hochwertige Gartengestaltung, Terrassen, Pflasterarbeiten und Außenanlagen.",
+        "Professioneller Garten- und Landschaftsbau in Bonn. Hochwertige Gartengestaltung, Terrassen, Pflasterarbeiten und Außenanlagen.",
       siteName: "LANDSTARKBAU",
       locale: ogLocales[locale] || "de_DE",
       type: "website",
       images: [
         {
-          url: "/og-image.jpg",
+          url: "/og-image.png", // <-- Змінено на .png
           width: 1200,
           height: 630,
-          alt: "LANDSTARKBAU",
+          alt: "LANDSTARKBAU - Garten- und Landschaftsbau in Bonn",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "LANDSTARKBAU | Garten- und Landschaftsbau",
-      description: "Professioneller Garten- und Landschaftsbau in Deutschland.",
-      images: ["/og-image.jpg"],
+      title: "LANDSTARKBAU | Garten- und Landschaftsbau in Bonn",
+      description: "Professioneller Garten- und Landschaftsbau in Bonn.",
+      images: ["/og-image.png"], // <-- Змінено на .png
     },
     robots: {
       index: true,
@@ -105,6 +157,7 @@ export async function generateMetadata({
   };
 }
 
+// --- ГОЛОВНИЙ ЛЕЙАУТ ---
 export default async function RootLayout({
   children,
   params,
@@ -120,10 +173,12 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* 1. Consent Mode default — без помилки React */}
+        {/* JSON-LD Schema */}
+        <JsonLd locale={locale} />
+
+        {/* Consent Mode default */}
         <ConsentScript />
 
-        {/* 2. Google Analytics — завантажується ТІЛЬКИ після згоди */}
         <AnalyticsGate gaId="G-LPX6LEGMTD" />
 
         <ThemeProvider>
