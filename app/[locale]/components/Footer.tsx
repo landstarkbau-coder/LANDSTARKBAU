@@ -127,7 +127,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com/landstarkbau?utm_source=qr"
+                href="https://www.instagram.com/landstarkbau.de?srtk=MTc5NW5meWw1dXAzZA=="
                 className="w-8 h-8 rounded-full border border-line-strong hover:bg-surface-card hover:border-ink flex items-center justify-center transition-all duration-300 group"
               >
                 <svg

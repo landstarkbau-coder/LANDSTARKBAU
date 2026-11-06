@@ -92,7 +92,13 @@ export function StickyContact() {
     setIsOpen(!isOpen)
   }
 
-  // Брендові кольори месенджерів — НЕ змінюємо на токени
+  // ============================================================
+  // БРЕНДОВІ КОЛЬОРИ МЕСЕНДЖЕРІВ — НАВМИСНО HARDCODED
+  // ------------------------------------------------------------
+  // Це впізнавані кольори сервісів (Viber = фіолетовий,
+  // Telegram = блакитний, Phone = зелений). Вони НЕ повинні
+  // залежати від теми сайту — інакше користувач не впізнає іконку.
+  // ============================================================
   const contactMethods = [
     {
       id: 'phone',
@@ -133,7 +139,7 @@ export function StickyContact() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* Контейнер для іконок */}
+      {/* Контейнер для іконок месенджерів */}
       <div className={`flex flex-col items-end gap-3 mb-3 transition-all duration-300 ${
         isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
       }`}>
@@ -160,7 +166,14 @@ export function StickyContact() {
         ))}
       </div>
 
-      {/* Головна кнопка — навмисно темна в обох темах (брендовий елемент) */}
+      {/* ============================================================
+          ГОЛОВНА КНОПКА — НАВМИСНО HARDCODED
+          ------------------------------------------------------------
+          - Закрита: темно-синій #111827 (фірмовий) + золота іконка
+          - Відкрита: насичений червоний (функціональний "закрити")
+          - Пульсація: золоте кільце rgba(212, 168, 83, 0.3)
+          Не залежить від теми — однаково виглядає скрізь.
+          ============================================================ */}
       <button
         onClick={toggleOpen}
         onMouseEnter={() => setIsHovered(true)}
@@ -171,7 +184,7 @@ export function StickyContact() {
           ${
             isOpen
               ? 'bg-red-600 hover:bg-red-700 rotate-90'
-              : 'bg-[#111827] hover:bg-[#1a2332]'
+              : 'bg-[#0a1610] hover:bg-[#102019]'
           }
           ${isHovered ? 'scale-110' : 'scale-100'}
         `}
@@ -179,7 +192,7 @@ export function StickyContact() {
       >
         {/* Іконка телефону */}
         <div className="relative w-7 h-7">
-          {/* Іконка відкриття (телефон) */}
+          {/* Іконка відкриття (телефон) — золотий #D4A853 */}
           <span className={`
             absolute inset-0 flex items-center justify-center transition-all duration-500
             ${isOpen ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}
@@ -189,7 +202,7 @@ export function StickyContact() {
             </svg>
           </span>
 
-          {/* Іконка закриття (хрестик) */}
+          {/* Іконка закриття (хрестик) — білий */}
           <span className={`
             absolute inset-0 flex items-center justify-center transition-all duration-500
             ${isOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-0'}
@@ -200,7 +213,7 @@ export function StickyContact() {
           </span>
         </div>
 
-        {/* Пульсуюча анімація з золотим кольором */}
+        {/* Пульсуюче золоте кільце */}
         <div
           className="absolute inset-0 rounded-full border-2 border-transparent animate-pulse-ring"
           style={{
@@ -208,7 +221,7 @@ export function StickyContact() {
           }}
         />
 
-        {/* Декоративне кільце при ховері */}
+        {/* Декоративне кільце при hover — золоте */}
         <div className={`absolute -inset-2 rounded-full border-2 transition-all duration-500 ${
           isHovered
             ? 'border-[#D4A853]/40 scale-100 opacity-100'
