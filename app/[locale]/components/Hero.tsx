@@ -37,7 +37,7 @@ export function Hero() {
         setLoading(false)
       }
     }
-    
+
     fetchProjects()
   }, [locale])
 
@@ -52,16 +52,16 @@ export function Hero() {
 
   if (loading) {
     return (
-      <div className="relative w-full min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+      <div className="relative w-full min-h-screen bg-surface flex items-center justify-center">
+        <div className="w-12 h-12 border-2 border-line-strong border-t-ink rounded-full animate-spin" />
       </div>
     )
   }
 
   if (projects.length === 0) {
     return (
-      <div className="relative w-full min-h-screen bg-gray-900 flex items-center justify-center">
-        <p className="text-white/60">
+      <div className="relative w-full min-h-screen bg-surface flex items-center justify-center">
+        <p className="text-ink-muted">
           {locale === 'de' ? 'Keine Projekte gefunden' : 'No projects found'}
         </p>
       </div>
@@ -79,18 +79,18 @@ export function Hero() {
 
   const getMobilePosition = (index: number) => {
     if (index === activeIndex) return 0
-    let position = index < activeIndex 
-      ? projects.length - activeIndex + index 
+    let position = index < activeIndex
+      ? projects.length - activeIndex + index
       : index - activeIndex
     return position
   }
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      
+
       {/* Анімований фон з фільтром */}
       <div className="absolute inset-0 overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 transition-all duration-1000 ease-out"
           style={{
             transform: `scale(1.08)`,
@@ -112,9 +112,9 @@ export function Hero() {
           />
         </div>
       </div>
-      
+
       {/* Затемнення з градієнтом */}
-      <div 
+      <div
         className="absolute inset-0 transition-all duration-1000"
         style={{
           animation: 'backgroundShake 30s ease-in-out infinite alternate',
@@ -122,15 +122,15 @@ export function Hero() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70 md:to-black/60" />
       </div>
-      
+
       {/* Додаткова накладка для читабельності */}
       {/* <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" /> */}
-      
+
       {/* Основний контент */}
       <div className="relative mt-18 lg:mt-0 min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-8 sm:py-12 md:py-16">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
-          
+
           {/* ЛІВА КОЛОНКА */}
           <div className="max-w-full lg:max-w-2xl z-10">
             <p className="text-white/90 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-3 md:mb-4">
@@ -142,7 +142,7 @@ export function Hero() {
             <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 md:mt-5 lg:mt-6 max-w-full lg:max-w-lg leading-relaxed drop-shadow">
               {activeProject.description}
             </p>
-            
+
             {/* Кнопка з перекладом */}
             <Link href={`/${locale}/projects/${activeProject.id}`}>
               <button className="group mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex items-center gap-2 sm:gap-3 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white/15 backdrop-blur-md rounded-full border border-white/30 hover:bg-white hover:text-black transition-all duration-500">
@@ -157,10 +157,10 @@ export function Hero() {
               </button>
             </Link>
           </div>
-          
+
           {/* ПРАВА КОЛОНКА */}
           <div className="flex flex-col items-end md:mt-16 ">
-            
+
             {/* ДЕСКТОПНА ВЕРСІЯ */}
             <div className="hidden lg:block w-full max-w-sm">
               <div className="relative h-[480px] flex items-center justify-center">
@@ -168,11 +168,11 @@ export function Hero() {
                   {projects.map((project, idx) => {
                     const position = getItemPosition(idx)
                     const isActive = position === 0
-                    
+
                     let translateY = 0
                     let opacity = 1
                     let zIndex = 1
-                    
+
                     if (isActive) {
                       translateY = 0
                       opacity = 1
@@ -183,7 +183,7 @@ export function Hero() {
                       opacity = Math.max(0.45, 1 - (distance * 0.2))
                       zIndex = 10 - distance
                     }
-                    
+
                     return (
                       <button
                         key={project.id}
@@ -191,8 +191,8 @@ export function Hero() {
                         className={`
                           absolute left-0 right-0 w-full flex items-center gap-4 p-4 rounded-xl cursor-pointer
                           transition-all duration-500 ease-in-out
-                          ${isActive 
-                            ? 'bg-white/25 backdrop-blur-md ring-1 ring-white/50 shadow-2xl' 
+                          ${isActive
+                            ? 'bg-white/25 backdrop-blur-md ring-1 ring-white/50 shadow-2xl'
                             : 'bg-white/5 hover:bg-white/10'
                           }
                         `}
@@ -217,14 +217,14 @@ export function Hero() {
                             {String(project.number).padStart(2, '0')}
                           </span>
                         </div>
-                        
+
                         <div className="flex-1 text-left">
                           <p className="text-white/50 text-[9px] tracking-wider uppercase">
                             {project.location.split(' ')[0]}
                           </p>
                           <p className={`font-medium leading-tight transition-all duration-500
-                            ${isActive 
-                              ? 'text-white text-base' 
+                            ${isActive
+                              ? 'text-white text-base'
                               : 'text-white/70 text-sm'
                             }
                           `}>
@@ -234,7 +234,7 @@ export function Hero() {
                             <p className="text-white/40 text-[10px] mt-1">Explore →</p>
                           )}
                         </div>
-                        
+
                         {isActive && (
                           <div className="w-0.5 h-12 rounded-full bg-white/60" />
                         )}
@@ -244,7 +244,7 @@ export function Hero() {
                 </div>
               </div>
             </div>
-            
+
             {/* МОБІЛЬНА ВЕРСІЯ */}
             <div className="lg:hidden w-full">
               <div className="relative h-[420px] flex items-start justify-start">
@@ -252,11 +252,11 @@ export function Hero() {
                   {projects.map((project, idx) => {
                     const position = getMobilePosition(idx)
                     const isActive = idx === activeIndex
-                    
+
                     let translateY = 0
                     let opacity = 1
                     let zIndex = 1
-                    
+
                     if (isActive) {
                       translateY = 0
                       opacity = 1
@@ -267,7 +267,7 @@ export function Hero() {
                       opacity = Math.max(0.45, 1 - (distance * 0.15))
                       zIndex = 10 - distance
                     }
-                    
+
                     return (
                       <button
                         key={project.id}
@@ -275,8 +275,8 @@ export function Hero() {
                         className={`
                           absolute left-0 right-0 w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer
                           transition-all duration-500 ease-in-out
-                          ${isActive 
-                            ? 'bg-white/25 backdrop-blur-md ring-1 ring-white/50 shadow-2xl' 
+                          ${isActive
+                            ? 'bg-white/25 backdrop-blur-md ring-1 ring-white/50 shadow-2xl'
                             : 'bg-white/5 hover:bg-white/10'
                           }
                         `}
@@ -300,14 +300,14 @@ export function Hero() {
                             {String(project.number).padStart(2, '0')}
                           </span>
                         </div>
-                        
+
                         <div className="flex-1 text-left">
                           <p className="text-white/50 text-[8px] tracking-wider uppercase">
                             {project.location.split(' ')[0]}
                           </p>
                           <p className={`font-medium leading-tight transition-all duration-500
-                            ${isActive 
-                              ? 'text-white text-sm' 
+                            ${isActive
+                              ? 'text-white text-sm'
                               : 'text-white/70 text-xs'
                             }
                           `}>
@@ -317,7 +317,7 @@ export function Hero() {
                             <p className="text-white/40 text-[9px] mt-1">Explore →</p>
                           )}
                         </div>
-                        
+
                         {isActive && (
                           <div className="w-0.5 h-10 rounded-full bg-white/60" />
                         )}
@@ -327,7 +327,7 @@ export function Hero() {
                 </div>
               </div>
             </div>
-            
+
             {/* Лічильник */}
             <div className="text-right mt-6 sm:mt-8 lg:mt-4">
               <div className="flex items-baseline gap-1 justify-end">
@@ -340,14 +340,14 @@ export function Hero() {
               </div>
               <div className="w-8 sm:w-10 lg:w-12 h-px bg-white/30 mt-1 ml-auto" />
             </div>
-            
+
           </div>
         </div>
-        
+
       </div>
-      
+
       <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-4 sm:left-6 md:left-8 lg:left-12 right-4 sm:right-6 md:right-8 lg:right-12 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
-      
+
     </section>
   )
 }

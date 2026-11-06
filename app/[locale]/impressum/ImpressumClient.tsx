@@ -3,12 +3,9 @@
 
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export default function ImpressumClient() {
   const locale = useLocale()
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   const content = {
     de: {
@@ -58,64 +55,62 @@ export default function ImpressumClient() {
   const t = content[locale as keyof typeof content] || content.de
 
   return (
-    <main className={`min-h-screen pt-32 pb-20 ${
-      isDark 
-        ? 'bg-gradient-to-b from-gray-900 to-gray-800' 
-        : 'bg-gradient-to-b from-gray-50 to-gray-100'
-    }`}>
+    <main className="min-h-screen pt-32 pb-20 bg-surface-2">
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
-        
+
         <div className="mb-8">
-          <Link href={`/${locale}`} className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white/70' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="text-sm text-ink-muted hover:text-ink transition-colors"
+          >
             Startseite
           </Link>
-          <span className={`mx-2 ${isDark ? 'text-white/20' : 'text-gray-300'}`}>/</span>
-          <span className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-700'}`}>{t.title}</span>
+          <span className="mx-2 text-line-strong">/</span>
+          <span className="text-sm text-ink-2">{t.title}</span>
         </div>
 
         <div className="mb-10">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.title}</h1>
-          <p className={`text-lg ${isDark ? 'text-white/50' : 'text-gray-600'}`}>{t.subtitle}</p>
-          <div className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mt-4`} />
+          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-ink">{t.title}</h1>
+          <p className="text-lg text-ink-2">{t.subtitle}</p>
+          <div className="w-16 h-px bg-line-strong mt-4" />
         </div>
 
-        <div className={`max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border ${
-          isDark 
-            ? 'bg-white/5 border-white/10' 
-            : 'bg-white/60 border-gray-200'
-        }`}>
+        <div className="max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-line bg-surface-card">
           <div className="space-y-6">
-            
+
             <div>
-              <h2 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.company}</h2>
-              <p className={`${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.address}</p>
-              <p className={`${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.phone}</p>
-              <p className={`${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.email}</p>
+              <h2 className="text-xl font-bold mb-2 text-ink">{t.company}</h2>
+              <p className="text-ink-2">{t.address}</p>
+              <p className="text-ink-2">{t.phone}</p>
+              <p className="text-ink-2">{t.email}</p>
             </div>
 
-            <div className={`pt-4 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+            <div className="pt-4 border-t border-line">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="md:col-span-2">
-                  <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>{t.ceo}</p>
+                  <p className="text-sm text-ink-muted">{t.ceo}</p>
                 </div>
               </div>
             </div>
 
-            <div className={`pt-4 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.disclaimer}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.disclaimerText}</p>
+            <div className="pt-4 border-t border-line">
+              <h3 className="text-lg font-semibold mb-2 text-ink">{t.disclaimer}</h3>
+              <p className="text-sm leading-relaxed text-ink-2">{t.disclaimerText}</p>
             </div>
 
-            <div className={`pt-4 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.copyright}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.copyrightText}</p>
+            <div className="pt-4 border-t border-line">
+              <h3 className="text-lg font-semibold mb-2 text-ink">{t.copyright}</h3>
+              <p className="text-sm leading-relaxed text-ink-2">{t.copyrightText}</p>
             </div>
 
           </div>
         </div>
 
         <div className="mt-8">
-          <Link href={`/${locale}`} className={`transition-colors flex items-center gap-2 ${isDark ? 'text-white/50 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="transition-colors flex items-center gap-2 text-ink-muted hover:text-ink"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>

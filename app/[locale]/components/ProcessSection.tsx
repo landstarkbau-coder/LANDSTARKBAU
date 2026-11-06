@@ -5,15 +5,12 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useLocale } from 'next-intl'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function ProcessSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('process')
   const locale = useLocale()
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,38 +83,38 @@ export function ProcessSection() {
   ]
 
   return (
-    <section id='our-process' ref={sectionRef} className={`relative py-20 md:py-28 overflow-hidden ${
-      isDark 
-        ? 'bg-gradient-to-b from-gray-900 to-gray-800' 
-        : 'bg-gradient-to-b from-gray-100 to-gray-200'
-    }`}>
-      
-      {/* Декоративний фон */}
-      <div className="absolute inset-0">
-        <div className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl ${isDark ? 'bg-white/5' : 'bg-gray-300/30'}`} />
-        <div className={`absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl ${isDark ? 'bg-white/5' : 'bg-gray-300/30'}`} />
+    <section
+      id="our-process"
+      ref={sectionRef}
+      className="relative py-20 md:py-28 overflow-hidden bg-surface"
+    >
+
+      {/* Декоративні плями */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl bg-line-subtle" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl bg-line-subtle" />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
-        
+
         {/* Заголовок секції */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <p className={`text-sm tracking-[0.3em] uppercase mb-3 ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
             {t('subtitle')}
           </p>
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-ink">
             {t('title')}
           </h2>
-          <div className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mx-auto`} />
-          <p className={`text-base md:text-lg mt-6 ${isDark ? 'text-white/50' : 'text-gray-600'}`}>
+          <div className="w-16 h-px bg-line-strong mx-auto" />
+          <p className="text-base md:text-lg mt-6 text-ink-2">
             {t('description')}
           </p>
         </div>
-        
+
         {/* ROADMAP - без ліній та точок */}
         <div className="max-w-4xl mx-auto">
           {processSteps.map((step, idx) => (
-            <div 
+            <div
               key={step.number}
               className="relative flex flex-col md:flex-row gap-6 md:gap-8 pb-12 md:pb-16"
               style={{
@@ -125,83 +122,72 @@ export function ProcessSection() {
                 opacity: 0,
               }}
             >
-              
+
               {/* Ліва частина - номер та іконка */}
               <div className="md:w-1/3 relative">
-                <div className={`text-6xl md:text-7xl font-bold mb-2 ${isDark ? 'text-white/10' : 'text-gray-400'}`}>
+                <div className="text-6xl md:text-7xl font-bold mb-2 text-line-strong">
                   {step.number}
                 </div>
-                
-                <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs mt-2 ${
-                  isDark 
-                    ? 'bg-white/5 text-white/40' 
-                    : 'bg-gray-200 text-gray-500'
-                }`}>
+
+                <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs mt-2 bg-surface-2 text-ink-muted">
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span>{step.duration}</span>
                 </div>
               </div>
-              
+
               {/* Права частина - контент */}
               <div className="md:w-2/3 pb-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                  isDark 
-                    ? 'bg-white/10 text-white/40' 
-                    : 'bg-gray-200 text-gray-500'
-                }`}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-surface-2 text-ink-muted">
                   {step.icon}
                 </div>
-                
-                <h3 className={`text-2xl font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+
+                <h3 className="text-2xl font-bold mb-1 text-ink">
                   {step.title}
                 </h3>
-                <p className={`text-sm mb-3 ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                <p className="text-sm mb-3 text-ink-muted">
                   {step.subtitle}
                 </p>
-                
-                <p className={`text-base leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-600'}`}>
+
+                <p className="text-base leading-relaxed text-ink-2">
                   {step.description}
                 </p>
               </div>
-              
+
             </div>
           ))}
-          
+
           {/* Фінальна точка */}
           <div className="flex justify-center mt-4">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-              isDark 
-                ? 'bg-white/10' 
-                : 'bg-gray-200'
-            }`}>
-              <svg className={`w-6 h-6 ${isDark ? 'text-white/40' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-surface-2">
+              <svg className="w-6 h-6 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
               </svg>
             </div>
           </div>
-          
+
         </div>
-        
+
         {/* CTA з якірним посиланням на контакт */}
         <div className="text-center mt-12">
           <Link href={`/${locale}#contact`}>
-            <button className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 ${
-              isDark 
-                ? 'bg-transparent border border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40' 
-                : 'bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-200 hover:border-gray-400'
-            }`}>
+            <button className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-transparent border border-line-strong text-ink-2 hover:bg-surface-2 hover:border-ink hover:text-ink">
               <span>{t('consultation')}</span>
-              <svg className={`w-4 h-4 ${isDark ? 'text-white/80' : 'text-gray-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
           </Link>
         </div>
-        
+
       </div>
-      
+
     </section>
   )
 }

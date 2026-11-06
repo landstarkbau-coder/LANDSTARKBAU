@@ -4,14 +4,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function CleaningSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('cleaningSection')
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,19 +39,8 @@ export function CleaningSection() {
     <section
       id="cleaning"
       ref={sectionRef}
-      className={`relative py-20 md:py-28 overflow-hidden ${
-        isDark ? 'bg-gray-900' : 'bg-white'
-      }`}
+      className="relative py-20 md:py-28 overflow-hidden bg-surface"
     >
-      {/* Декоративний фон */}
-      <div className="absolute inset-0">
-        <div
-          className={`absolute inset-0 bg-gradient-to-bl ${
-            isDark ? 'from-gray-900 to-gray-800' : 'from-white to-gray-100'
-          }`}
-        />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
@@ -70,54 +56,28 @@ export function CleaningSection() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-              <div
-                className={`absolute -bottom-4 -left-4 w-32 h-32 rounded-2xl -z-10 ${
-                  isDark ? 'bg-white/5' : 'bg-gray-200/50'
-                }`}
-              />
-              <div
-                className={`absolute -top-4 -right-4 w-24 h-24 rounded-2xl -z-10 ${
-                  isDark ? 'bg-white/5' : 'bg-gray-200/50'
-                }`}
-              />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 rounded-2xl -z-10 bg-line-subtle" />
+              <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl -z-10 bg-line-subtle" />
             </div>
           </div>
 
           {/* Права колонка - текст */}
           <div className="w-full lg:w-1/2 order-1 lg:order-2 space-y-6">
             <div>
-              <p
-                className={`text-sm tracking-[0.3em] uppercase mb-3 ${
-                  isDark ? 'text-white/40' : 'text-gray-500'
-                }`}
-              >
+              <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
                 {t('subtitle')}
               </p>
-              <h2
-                className={`text-3xl md:text-4xl lg:text-5xl font-bold ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}
-              >
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink">
                 {t('title')}
               </h2>
-              <div
-                className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mt-4`}
-              />
+              <div className="w-16 h-px bg-line-strong mt-4" />
             </div>
 
-            <p
-              className={`text-base md:text-lg leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-gray-700'
-              }`}
-            >
+            <p className="text-base md:text-lg leading-relaxed text-ink-2">
               {t('description1')}
             </p>
 
-            <p
-              className={`text-base leading-relaxed ${
-                isDark ? 'text-white/60' : 'text-gray-600'
-              }`}
-            >
+            <p className="text-base leading-relaxed text-ink-2">
               {t('description2')}
             </p>
 
@@ -126,32 +86,16 @@ export function CleaningSection() {
               {services.map((service) => (
                 <div
                   key={service.key}
-                  className={`flex items-start gap-3 p-4 rounded-xl border transition-colors duration-300 ${
-                    isDark
-                      ? 'bg-white/5 border-white/10 hover:bg-white/10'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                  }`}
+                  className="flex items-start gap-3 p-4 rounded-xl border border-line bg-surface-card hover:bg-surface-card-hover transition-colors duration-300"
                 >
-                  <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg ${
-                      isDark ? 'bg-white/10' : 'bg-gray-200'
-                    }`}
-                  >
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg bg-surface-2">
                     {service.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div
-                      className={`text-sm font-semibold mb-1 ${
-                        isDark ? 'text-white' : 'text-gray-900'
-                      }`}
-                    >
+                    <div className="text-sm font-semibold mb-1 text-ink">
                       {t(`${service.key}Title`)}
                     </div>
-                    <div
-                      className={`text-xs leading-relaxed ${
-                        isDark ? 'text-white/50' : 'text-gray-500'
-                      }`}
-                    >
+                    <div className="text-xs leading-relaxed text-ink-muted">
                       {t(`${service.key}Desc`)}
                     </div>
                   </div>
@@ -162,11 +106,7 @@ export function CleaningSection() {
             {/* CTA кнопка */}
             <a
               href={`/cleaning`}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 ${
-                isDark
-                  ? 'bg-white/10 text-white/80 hover:bg-white/20'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-              }`}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-brand/10 text-ink-2 hover:bg-brand/20 hover:text-ink"
             >
               <span>{t('cta')}</span>
               <svg

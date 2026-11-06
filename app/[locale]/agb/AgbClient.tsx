@@ -3,12 +3,9 @@
 
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export default function AgbClient() {
   const locale = useLocale()
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   const content = {
     de: {
@@ -75,64 +72,52 @@ export default function AgbClient() {
 
   const t = content[locale as keyof typeof content] || content.de
 
+  // Список секцій — щоб не дублювати JSX 8 разів
+  const sections = [
+    { heading: t.scope, text: t.scopeText },
+    { heading: t.contract, text: t.contractText },
+    { heading: t.prices, text: t.pricesText },
+    { heading: t.execution, text: t.executionText },
+    { heading: t.warranty, text: t.warrantyText },
+    { heading: t.liability, text: t.liabilityText },
+    { heading: t.final, text: t.finalText },
+  ]
+
   return (
-    <main className={`min-h-screen pt-32 pb-20 ${
-      isDark 
-        ? 'bg-gradient-to-b from-gray-900 to-gray-800' 
-        : 'bg-gradient-to-b from-gray-50 to-gray-100'
-    }`}>
+    <main className="min-h-screen pt-32 pb-20 bg-surface">
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="mb-8">
-          <Link href={`/${locale}`} className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white/70' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="text-sm text-ink-muted hover:text-ink transition-colors"
+          >
             Startseite
           </Link>
-          <span className={`mx-2 ${isDark ? 'text-white/20' : 'text-gray-300'}`}>/</span>
-          <span className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-700'}`}>{t.title}</span>
+          <span className="mx-2 text-line-strong">/</span>
+          <span className="text-sm text-ink-2">{t.title}</span>
         </div>
         <div className="mb-10">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.title}</h1>
-          <p className={`text-lg ${isDark ? 'text-white/50' : 'text-gray-600'}`}>{t.subtitle}</p>
-          <div className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mt-4`} />
+          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-ink">{t.title}</h1>
+          <p className="text-lg text-ink-2">{t.subtitle}</p>
+          <div className="w-16 h-px bg-line-strong mt-4" />
         </div>
-        <div className={`max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border ${
-          isDark 
-            ? 'bg-white/5 border-white/10' 
-            : 'bg-white/60 border-gray-200'
-        }`}>
+        <div className="max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-line bg-surface-card">
           <div className="space-y-6">
-            <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.intro}</p>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.scope}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.scopeText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.contract}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.contractText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.prices}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.pricesText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.execution}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.executionText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.warranty}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.warrantyText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.liability}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.liabilityText}</p>
-            </div>
-            <div>
-              <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.final}</h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`}>{t.finalText}</p>
-            </div>
+            <p className="text-sm leading-relaxed text-ink-2">{t.intro}</p>
+
+            {sections.map((section, idx) => (
+              <div key={idx}>
+                <h3 className="text-lg font-semibold mb-2 text-ink">{section.heading}</h3>
+                <p className="text-sm leading-relaxed text-ink-2">{section.text}</p>
+              </div>
+            ))}
           </div>
         </div>
         <div className="mt-8">
-          <Link href={`/${locale}`} className={`transition-colors flex items-center gap-2 ${isDark ? 'text-white/50 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="transition-colors flex items-center gap-2 text-ink-muted hover:text-ink"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>

@@ -126,7 +126,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.png", // <-- Змінено на .png
+          url: "/og-image.png", 
           width: 1200,
           height: 630,
           alt: "LANDSTARKBAU - Garten- und Landschaftsbau in Bonn",
@@ -137,7 +137,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: "LANDSTARKBAU | Garten- und Landschaftsbau in Bonn",
       description: "Professioneller Garten- und Landschaftsbau in Bonn.",
-      images: ["/og-image.png"], // <-- Змінено на .png
+      images: ["/og-image.png"],
     },
     robots: {
       index: true,

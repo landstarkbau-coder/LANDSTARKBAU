@@ -83,11 +83,12 @@ export function Header() {
     { code: 'de', label: 'DE', fullLabel: 'Deutsch' },
     { code: 'en', label: 'EN', fullLabel: 'English' },
     { code: 'uk', label: 'UA', fullLabel: 'Українська' },
-     { code: 'ru', label: 'RU', fullLabel: 'Русский' }
+    { code: 'ru', label: 'RU', fullLabel: 'Русский' },
   ]
 
   const currentLanguage = languages.find(lang => lang.code === locale) || languages[0]
 
+  // Потрібно лише для показу правильної іконки (сонце/місяць)
   const isDark = theme === 'dark'
 
   return (
@@ -97,8 +98,8 @@ export function Header() {
           fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out
           ${
             isScrolled
-              ? `${isDark ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-md shadow-lg py-3`
-              : 'bg-transparent py-5'
+              ? 'bg-[var(--bg-header-scrolled)] backdrop-blur-md shadow-lg py-3'
+              : 'bg-[var(--bg-header)] py-5'
           }
         `}
       >
@@ -128,21 +129,13 @@ export function Header() {
                   pathname === item.href ||
                   (item.href.includes('#') && pathname === `/${locale}`)
 
-                const textColor = isDark
-                  ? isActive
-                    ? 'text-white'
-                    : 'text-white/60 hover:text-white'
-                  : isActive
-                    ? 'text-gray-900'
-                    : 'text-gray-600 hover:text-gray-900'
+                const textColor = isActive
+                  ? 'text-ink'
+                  : 'text-ink-2 hover:text-ink'
 
-                const lineColor = isDark
-                  ? isActive
-                    ? 'bg-white'
-                    : 'bg-white/40'
-                  : isActive
-                    ? 'bg-gray-900'
-                    : 'bg-gray-400'
+                const lineColor = isActive
+                  ? 'bg-ink'
+                  : 'bg-ink-muted'
 
                 if (item.type === 'anchor') {
                   return (
@@ -167,17 +160,9 @@ export function Header() {
                   >
                     {item.name}
                     {isActive && (
-                      <span
-                        className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 ${
-                          isDark ? 'bg-white/60' : 'bg-gray-900'
-                        } rounded-full`}
-                      />
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-ink-2 rounded-full" />
                     )}
-                    <span
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 ${
-                        isDark ? 'bg-white/40' : 'bg-gray-400'
-                      } rounded-full transition-all duration-300 group-hover:w-6`}
-                    />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-ink-muted rounded-full transition-all duration-300 group-hover:w-6" />
                   </Link>
                 )
               })}
@@ -188,11 +173,7 @@ export function Header() {
               {/* Перемикач теми */}
               <button
                 onClick={toggleTheme}
-                className={`p-2 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
-                  isDark
-                    ? 'border-white/30 hover:border-white/50 text-white/80 hover:text-white bg-white/5'
-                    : 'border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 bg-white/10'
-                }`}
+                className="p-2 rounded-lg border border-line-strong hover:border-ink text-ink-2 hover:text-ink bg-surface-card/10 backdrop-blur-sm transition-all duration-300"
                 aria-label="Toggle theme"
               >
                 {isDark ? (
@@ -220,11 +201,7 @@ export function Header() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                  className={`flex items-center gap-2 px-3 py-2 text-sm transition-all duration-300 rounded-lg backdrop-blur-sm ${
-                    isDark
-                      ? 'text-white/80 hover:text-white border-white/30 hover:border-white/50 bg-white/5'
-                      : 'text-gray-700 hover:text-gray-900 border-gray-300 hover:border-gray-400 bg-white/10'
-                  } border`}
+                  className="flex items-center gap-2 px-3 py-2 text-sm border rounded-lg border-line-strong hover:border-ink text-ink-2 hover:text-ink bg-surface-card/10 backdrop-blur-sm transition-all duration-300"
                 >
                   <span>{currentLanguage.label}</span>
                   <svg
@@ -240,33 +217,23 @@ export function Header() {
                 </button>
 
                 {isLanguageDropdownOpen && (
-                  <div
-                    className={`absolute right-0 mt-2 w-40 rounded-xl border shadow-2xl overflow-hidden z-20 ${
-                      isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white border-gray-200'
-                    }`}
-                  >
+                  <div className="absolute right-0 mt-2 w-40 rounded-xl border border-line bg-surface-card shadow-2xl overflow-hidden z-20">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
                         onClick={() => switchLanguage(lang.code)}
                         className={`w-full px-4 py-2.5 text-sm text-left transition-colors ${
                           locale === lang.code
-                            ? isDark
-                              ? 'text-white bg-white/5'
-                              : 'text-gray-900 bg-gray-50'
-                            : isDark
-                              ? 'text-white/60 hover:bg-white/10'
-                              : 'text-gray-600 hover:bg-gray-100'
+                            ? 'text-ink bg-surface-2'
+                            : 'text-ink-2 hover:bg-surface-2'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <span className="font-medium">{lang.label}</span>
-                          <span className={isDark ? 'text-white/40' : 'text-gray-400'}>
-                            {lang.fullLabel}
-                          </span>
+                          <span className="text-ink-muted">{lang.fullLabel}</span>
                           {locale === lang.code && (
                             <svg
-                              className="w-4 h-4 text-green-500 dark:text-green-400 ml-auto"
+                              className="w-4 h-4 text-success ml-auto"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -289,19 +256,19 @@ export function Header() {
               aria-label="Menu"
             >
               <span
-                className={`w-6 h-0.5 ${
-                  isDark ? 'bg-white' : 'bg-gray-900'
-                } transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
+                className={`w-6 h-0.5 bg-ink transition-all duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                }`}
               />
               <span
-                className={`w-6 h-0.5 ${
-                  isDark ? 'bg-white' : 'bg-gray-900'
-                } transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}
+                className={`w-6 h-0.5 bg-ink transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                }`}
               />
               <span
-                className={`w-6 h-0.5 ${
-                  isDark ? 'bg-white' : 'bg-gray-900'
-                } transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
+                className={`w-6 h-0.5 bg-ink transition-all duration-300 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                }`}
               />
             </button>
 
@@ -311,24 +278,20 @@ export function Header() {
 
       {/* МОБІЛЬНЕ МЕНЮ */}
       <div
-        className={`fixed inset-0 z-40 transition-all duration-500 ease-in-out xl:hidden ${
-          isDark ? 'bg-gray-900' : 'bg-white'
-        } ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+        className={`fixed inset-0 z-40 transition-all duration-500 ease-in-out xl:hidden bg-surface-overlay ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}
       >
         <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
 
           <nav className="flex flex-col items-center gap-4 w-full max-w-xs pt-8">
 
-            {/* Мобільний: перемикач теми + дропдаун мови (як на десктопі) */}
+            {/* Мобільний: перемикач теми + дропдаун мови */}
             <div className="flex items-center justify-center gap-5 w-full py-2">
               {/* Перемикач теми */}
               <button
                 onClick={toggleTheme}
-                className={`p-2 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
-                  isDark
-                    ? 'border-white/30 hover:border-white/50 text-white/80 hover:text-white bg-white/5'
-                    : 'border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 bg-white/10'
-                }`}
+                className="p-2 rounded-lg border border-line-strong hover:border-ink text-ink-2 hover:text-ink bg-surface-card/10 backdrop-blur-sm transition-all duration-300"
                 aria-label="Toggle theme"
               >
                 {isDark ? (
@@ -356,11 +319,7 @@ export function Header() {
               <div className="relative" ref={mobileDropdownRef}>
                 <button
                   onClick={() => setIsMobileLanguageDropdownOpen(!isMobileLanguageDropdownOpen)}
-                  className={`flex items-center gap-2 px-3 py-2 text-sm transition-all duration-300 rounded-lg backdrop-blur-sm ${
-                    isDark
-                      ? 'text-white/80 hover:text-white border-white/30 hover:border-white/50 bg-white/5'
-                      : 'text-gray-700 hover:text-gray-900 border-gray-300 hover:border-gray-400 bg-white/10'
-                  } border`}
+                  className="flex items-center gap-2 px-3 py-2 text-sm border rounded-lg border-line-strong hover:border-ink text-ink-2 hover:text-ink bg-surface-card/10 backdrop-blur-sm transition-all duration-300"
                 >
                   <span>{currentLanguage.label}</span>
                   <svg
@@ -376,33 +335,23 @@ export function Header() {
                 </button>
 
                 {isMobileLanguageDropdownOpen && (
-                  <div
-                    className={`absolute right-0 mt-2 w-40 rounded-xl border shadow-2xl overflow-hidden z-50 ${
-                      isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white border-gray-200'
-                    }`}
-                  >
+                  <div className="absolute right-0 mt-2 w-40 rounded-xl border border-line bg-surface-card shadow-2xl overflow-hidden z-50">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
                         onClick={() => switchLanguage(lang.code)}
                         className={`w-full px-4 py-2.5 text-sm text-left transition-colors ${
                           locale === lang.code
-                            ? isDark
-                              ? 'text-white bg-white/5'
-                              : 'text-gray-900 bg-gray-50'
-                            : isDark
-                              ? 'text-white/60 hover:bg-white/10'
-                              : 'text-gray-600 hover:bg-gray-100'
+                            ? 'text-ink bg-surface-2'
+                            : 'text-ink-2 hover:bg-surface-2'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <span className="font-medium">{lang.label}</span>
-                          <span className={isDark ? 'text-white/40' : 'text-gray-400'}>
-                            {lang.fullLabel}
-                          </span>
+                          <span className="text-ink-muted">{lang.fullLabel}</span>
                           {locale === lang.code && (
                             <svg
-                              className="w-4 h-4 text-green-500 dark:text-green-400 ml-auto"
+                              className="w-4 h-4 text-success ml-auto"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -420,9 +369,7 @@ export function Header() {
 
             {/* Навігація */}
             {navItems.map((item, idx) => {
-              const textColor = isDark
-                ? 'text-white/60 hover:text-white'
-                : 'text-gray-600 hover:text-gray-900'
+              const textColor = 'text-ink-2 hover:text-ink'
 
               if (item.type === 'anchor') {
                 return (

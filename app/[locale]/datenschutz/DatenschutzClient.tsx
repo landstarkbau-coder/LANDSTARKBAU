@@ -3,12 +3,9 @@
 
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export default function DatenschutzClient() {
   const locale = useLocale()
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   const content = {
     de: {
@@ -261,38 +258,35 @@ export default function DatenschutzClient() {
 
   const t = content[locale as keyof typeof content] || content.de
 
-  const cardClass = `max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border ${
-    isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-gray-200'
-  }`
+  const cardClass = 'max-w-4xl backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-line bg-surface-card'
 
-  const h3Class = `text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`
-  const pClass = `text-sm leading-relaxed ${isDark ? 'text-white/70' : 'text-gray-700'}`
-  const smallClass = `text-xs mt-2 ${isDark ? 'text-white/50' : 'text-gray-500'}`
-  const ulClass = `list-disc list-inside space-y-1 text-sm ml-4 ${isDark ? 'text-white/60' : 'text-gray-600'}`
+  const h3Class = 'text-lg font-semibold mb-2 text-ink'
+  const pClass = 'text-sm leading-relaxed text-ink-2'
+  const smallClass = 'text-xs mt-2 text-ink-muted'
+  const ulClass = 'list-disc list-inside space-y-1 text-sm ml-4 text-ink-2'
 
-  const tableClass = `w-full text-sm mt-3 border-collapse`
-  const thClass = `text-left py-2 px-3 border-b ${isDark ? 'border-white/10 text-white/70' : 'border-gray-200 text-gray-600'}`
-  const tdClass = `py-2 px-3 border-b ${isDark ? 'border-white/5 text-white/60' : 'border-gray-100 text-gray-600'}`
+  const tableClass = 'w-full text-sm mt-3 border-collapse'
+  const thClass = 'text-left py-2 px-3 border-b border-line text-ink-2'
+  const tdClass = 'py-2 px-3 border-b border-line-subtle text-ink-2'
 
   return (
-    <main className={`min-h-screen pt-32 pb-20 ${
-      isDark
-        ? 'bg-gradient-to-b from-gray-900 to-gray-800'
-        : 'bg-gradient-to-b from-gray-50 to-gray-100'
-    }`}>
+    <main className="min-h-screen pt-32 pb-20 bg-surface-2">
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
         <div className="mb-8">
-          <Link href={`/${locale}`} className={`text-sm transition-colors ${isDark ? 'text-white/40 hover:text-white/70' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="text-sm text-ink-muted hover:text-ink transition-colors"
+          >
             Startseite
           </Link>
-          <span className={`mx-2 ${isDark ? 'text-white/20' : 'text-gray-300'}`}>/</span>
-          <span className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-700'}`}>{t.title}</span>
+          <span className="mx-2 text-line-strong">/</span>
+          <span className="text-sm text-ink-2">{t.title}</span>
         </div>
 
         <div className="mb-10">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t.title}</h1>
-          <p className={`text-lg ${isDark ? 'text-white/50' : 'text-gray-600'}`}>{t.subtitle}</p>
-          <div className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mt-4`} />
+          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-ink">{t.title}</h1>
+          <p className="text-lg text-ink-2">{t.subtitle}</p>
+          <div className="w-16 h-px bg-line-strong mt-4" />
         </div>
 
         <div className={cardClass}>
@@ -394,13 +388,13 @@ export default function DatenschutzClient() {
             </div>
 
             {/* Cookie-політика */}
-            <div className={`pt-6 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-              <h3 className={`text-xl font-semibold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            <div className="pt-6 border-t border-line">
+              <h3 className="text-xl font-semibold mb-3 text-ink">
                 {t.cookieTitle}
               </h3>
               <p className={`${pClass} mb-4`}>{t.cookieIntro}</p>
 
-              <h4 className={`text-base font-semibold mb-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>
+              <h4 className="text-base font-semibold mb-2 text-ink">
                 {t.cookieNecessary}
               </h4>
               <p className={`${pClass} mb-2`}>{t.cookieNecessaryText}</p>
@@ -423,7 +417,7 @@ export default function DatenschutzClient() {
                 </tbody>
               </table>
 
-              <h4 className={`text-base font-semibold mt-6 mb-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>
+              <h4 className="text-base font-semibold mt-6 mb-2 text-ink">
                 {t.cookieAnalytics}
               </h4>
               <p className={`${pClass} mb-2`}>{t.cookieAnalyticsText}</p>
@@ -446,12 +440,12 @@ export default function DatenschutzClient() {
                 </tbody>
               </table>
 
-              <h4 className={`text-base font-semibold mt-6 mb-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>
+              <h4 className="text-base font-semibold mt-6 mb-2 text-ink">
                 {t.cookieMarketing}
               </h4>
               <p className={pClass}>{t.cookieMarketingText}</p>
 
-              <h4 className={`text-base font-semibold mt-6 mb-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>
+              <h4 className="text-base font-semibold mt-6 mb-2 text-ink">
                 {t.cookieManage}
               </h4>
               <p className={pClass}>{t.cookieManageText}</p>
@@ -461,7 +455,10 @@ export default function DatenschutzClient() {
         </div>
 
         <div className="mt-8">
-          <Link href={`/${locale}`} className={`transition-colors flex items-center gap-2 ${isDark ? 'text-white/50 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}>
+          <Link
+            href={`/${locale}`}
+            className="transition-colors flex items-center gap-2 text-ink-muted hover:text-ink"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>

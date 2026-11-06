@@ -3,14 +3,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function CleaningProcess() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('cleaning.process')
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,47 +28,25 @@ export function CleaningProcess() {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-20 md:py-28 overflow-hidden ${
-        isDark ? 'bg-gray-900' : 'bg-white'
-      }`}
+      className="relative py-20 md:py-28 overflow-hidden bg-surface"
     >
-      <div className="absolute inset-0">
-        <div
-          className={`absolute inset-0 bg-gradient-to-bl ${
-            isDark ? 'from-gray-900 to-gray-800' : 'from-white to-gray-100'
-          }`}
-        />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
 
+        {/* Заголовок */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <p
-            className={`text-sm tracking-[0.3em] uppercase mb-3 ${
-              isDark ? 'text-white/40' : 'text-gray-500'
-            }`}
-          >
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
             {t('subtitle')}
           </p>
-          <h2
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-ink">
             {t('title')}
           </h2>
-          <div
-            className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mx-auto`}
-          />
-          <p
-            className={`text-base md:text-lg mt-6 ${
-              isDark ? 'text-white/50' : 'text-gray-600'
-            }`}
-          >
+          <div className="w-16 h-px bg-line-strong mx-auto" />
+          <p className="text-base md:text-lg mt-6 text-ink-2">
             {t('description')}
           </p>
         </div>
 
+        {/* Кроки */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, idx) => (
             <div
@@ -84,43 +59,21 @@ export function CleaningProcess() {
                 opacity: isVisible ? 1 : 0,
               }}
             >
-              <div
-                className={`p-6 rounded-2xl border h-full transition-colors duration-300 ${
-                  isDark
-                    ? 'bg-white/5 border-white/10 hover:bg-white/10'
-                    : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                }`}
-              >
-                <div
-                  className={`text-5xl font-bold mb-4 ${
-                    isDark ? 'text-white/10' : 'text-gray-200'
-                  }`}
-                >
+              <div className="p-6 rounded-2xl border border-line bg-surface-card hover:bg-surface-card-hover h-full transition-colors duration-300">
+                <div className="text-5xl font-bold mb-4 text-line-strong">
                   0{idx + 1}
                 </div>
-                <h3
-                  className={`text-lg font-semibold mb-2 ${
-                    isDark ? 'text-white' : 'text-gray-900'
-                  }`}
-                >
+                <h3 className="text-lg font-semibold mb-2 text-ink">
                   {t(`${step}Title`)}
                 </h3>
-                <p
-                  className={`text-sm leading-relaxed ${
-                    isDark ? 'text-white/50' : 'text-gray-600'
-                  }`}
-                >
+                <p className="text-sm leading-relaxed text-ink-2">
                   {t(`${step}Desc`)}
                 </p>
               </div>
 
               {/* Стрілка між кроками (desktop) */}
               {idx < steps.length - 1 && (
-                <div
-                  className={`hidden lg:block absolute top-1/2 -right-3 w-6 h-px ${
-                    isDark ? 'bg-white/10' : 'bg-gray-300'
-                  }`}
-                />
+                <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-line-strong" />
               )}
             </div>
           ))}

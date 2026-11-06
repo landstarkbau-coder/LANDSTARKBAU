@@ -4,15 +4,12 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function TestimonialsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('testimonials')
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   // Масив відгуків з ПОВНИМИ перекладами
   const testimonials = [
@@ -88,48 +85,43 @@ export function TestimonialsSection() {
   const activeTestimonial = testimonials[activeIndex]
 
   return (
-    <section id="testimonials" ref={sectionRef} className={`relative py-20 md:py-28 overflow-hidden ${
-      isDark 
-        ? 'bg-gradient-to-b from-gray-800 to-gray-900' 
-        : 'bg-gradient-to-b from-gray-100 to-gray-200'
-    }`}>
-      
-      <div className="absolute inset-0 opacity-20">
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl ${
-          isDark ? 'bg-white' : 'bg-gray-400'
-        }`} />
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="relative py-20 md:py-28 overflow-hidden bg-surface-2"
+    >
+
+      {/* Декоративна пляма */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl bg-line-strong" />
       </div>
-      
-      <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
-        
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
+
         {/* Заголовок секції */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className={`text-sm tracking-[0.3em] uppercase mb-3 ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
             {t('subtitle')}
           </p>
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-ink">
             {t('title')}
           </h2>
-          <div className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mx-auto`} />
-          <p className={`text-base md:text-lg mt-6 ${isDark ? 'text-white/50' : 'text-gray-600'}`}>
+          <div className="w-16 h-px bg-line-strong mx-auto" />
+          <p className="text-base md:text-lg mt-6 text-ink-2">
             {t('description')}
           </p>
         </div>
-        
+
         {/* Головний відгук */}
         <div className="max-w-4xl mx-auto">
-          <div 
-            className={`backdrop-blur-sm rounded-2xl p-8 md:p-10 border transition-colors ${
-              isDark 
-                ? 'bg-white/5 border-white/10' 
-                : 'bg-white/60 border-gray-200'
-            }`}
+          <div
+            className="backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-line bg-surface-card transition-colors"
             style={{
               animation: isVisible ? 'fadeInUp 0.6s ease-out forwards' : 'none',
               opacity: 0,
             }}
           >
-            {/* Зірки */}
+            {/* Зірки — навмисно жовті (універсальний колір рейтингу) */}
             <div className="flex gap-1 mb-6">
               {[...Array(activeTestimonial.rating)].map((_, i) => (
                 <svg key={i} className="w-5 h-5 text-yellow-500/70 fill-current" viewBox="0 0 20 20">
@@ -137,18 +129,14 @@ export function TestimonialsSection() {
                 </svg>
               ))}
             </div>
-            
+
             {/* Текст відгуку */}
-            <p className={`text-lg md:text-xl leading-relaxed italic mb-8 ${
-              isDark ? 'text-white/80' : 'text-gray-700'
-            }`}>
+            <p className="text-lg md:text-xl leading-relaxed italic mb-8 text-ink-2">
               "{activeTestimonial.text}"
             </p>
-            
+
             {/* Інформація про клієнта */}
-            <div className={`flex items-center justify-between flex-wrap gap-4 pt-4 border-t ${
-              isDark ? 'border-white/10' : 'border-gray-200'
-            }`}>
+            <div className="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-line">
               <div className="flex items-center gap-4">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
                   <Image
@@ -159,25 +147,25 @@ export function TestimonialsSection() {
                   />
                 </div>
                 <div>
-                  <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  <h4 className="font-semibold text-ink">
                     {activeTestimonial.name}
                   </h4>
-                  <p className={`text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                  <p className="text-sm text-ink-muted">
                     {activeTestimonial.location}
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <p className={`text-sm ${isDark ? 'text-white/50' : 'text-gray-600'}`}>
+                <p className="text-sm text-ink-2">
                   {activeTestimonial.project}
                 </p>
-                <p className={`text-xs ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
+                <p className="text-xs text-ink-muted">
                   {activeTestimonial.date}
                 </p>
               </div>
             </div>
           </div>
-          
+
           {/* Навігація */}
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, idx) => (
@@ -185,17 +173,18 @@ export function TestimonialsSection() {
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 className={`transition-all duration-300 rounded-full ${
-                  activeIndex === idx 
-                    ? isDark ? 'w-8 h-2 bg-white/60' : 'w-8 h-2 bg-gray-600'
-                    : isDark ? 'w-2 h-2 bg-white/20 hover:bg-white/40' : 'w-2 h-2 bg-gray-300 hover:bg-gray-500'
+                  activeIndex === idx
+                    ? 'w-8 h-2 bg-ink-2'
+                    : 'w-2 h-2 bg-line-strong hover:bg-ink-muted'
                 }`}
+                aria-label={`Testimonial ${idx + 1}`}
               />
             ))}
           </div>
         </div>
-        
+
       </div>
-      
+
     </section>
   )
 }

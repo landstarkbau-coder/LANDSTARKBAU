@@ -1,10 +1,6 @@
 'use client';
 
-interface CookieSettingsButtonProps {
-  isDark: boolean;
-}
-
-export function CookieSettingsButton({ isDark }: CookieSettingsButtonProps) {
+export function CookieSettingsButton() {
   const handleClick = () => {
     // Відкриваємо панель категорій одразу (не перший рівень)
     window.dispatchEvent(
@@ -16,11 +12,7 @@ export function CookieSettingsButton({ isDark }: CookieSettingsButtonProps) {
     <button
       type="button"
       onClick={handleClick}
-      className={`text-xs transition-colors ${
-        isDark
-          ? 'text-white/30 hover:text-white'
-          : 'text-gray-400 hover:text-gray-600'
-      }`}
+      className="text-xs text-ink-muted hover:text-ink transition-colors"
     >
       Cookie-Einstellungen ändern
     </button>

@@ -4,7 +4,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function CleaningFAQ() {
   const [openId, setOpenId] = useState<number | null>(null)
@@ -12,8 +11,6 @@ export function CleaningFAQ() {
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('cleaning.faq')
   const locale = useLocale()
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
 
   const faqData = [
     { id: 1, question: t('question1'), answer: t('answer1') },
@@ -46,52 +43,31 @@ export function CleaningFAQ() {
     <section
       id="faq"
       ref={sectionRef}
-      className={`relative py-20 md:py-28 overflow-hidden ${
-        isDark ? 'bg-gray-900' : 'bg-gray-100'
-      }`}
+      className="relative py-20 md:py-28 overflow-hidden bg-surface-2"
     >
-      <div className="absolute inset-0 opacity-30">
-        <div
-          className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl ${
-            isDark ? 'bg-white' : 'bg-gray-400'
-          }`}
-        />
-        <div
-          className={`absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl ${
-            isDark ? 'bg-white' : 'bg-gray-400'
-          }`}
-        />
+      {/* Декоративні плями */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl bg-line-strong" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl bg-line-strong" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 relative z-10">
 
+        {/* Заголовок секції */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <p
-            className={`text-sm tracking-[0.3em] uppercase mb-3 ${
-              isDark ? 'text-white/40' : 'text-gray-500'
-            }`}
-          >
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
             {t('subtitle')}
           </p>
-          <h2
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-ink">
             {t('title')}
           </h2>
-          <div
-            className={`w-16 h-px ${isDark ? 'bg-white/20' : 'bg-gray-300'} mx-auto`}
-          />
-          <p
-            className={`text-base md:text-lg mt-6 ${
-              isDark ? 'text-white/50' : 'text-gray-600'
-            }`}
-          >
+          <div className="w-16 h-px bg-line-strong mx-auto" />
+          <p className="text-base md:text-lg mt-6 text-ink-2">
             {t('description')}
           </p>
         </div>
 
+        {/* Сітка FAQ */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4 md:gap-6">
           {faqData.map((item, idx) => {
             const isOpen = openId === item.id
@@ -106,35 +82,23 @@ export function CleaningFAQ() {
                   opacity: isVisible ? 1 : 0,
                 }}
               >
-                <div
-                  className={`w-full text-left rounded-xl border overflow-hidden transform-gpu ${
-                    isDark
-                      ? 'bg-white/5 border-white/10 hover:border-white/20'
-                      : 'bg-white/60 border-gray-200 hover:border-gray-300'
-                  }`}
-                >
+                <div className="w-full text-left rounded-xl border border-line bg-surface-card hover:border-line-strong overflow-hidden transform-gpu transition-colors duration-300">
                   <button
                     type="button"
                     onClick={() => toggleQuestion(item.id)}
                     aria-expanded={isOpen}
                     className="w-full text-left flex justify-between items-center p-5 md:p-6"
                   >
-                    <h3
-                      className={`font-semibold text-base md:text-lg pr-4 ${
-                        isDark ? 'text-white' : 'text-gray-900'
-                      }`}
-                    >
+                    <h3 className="font-semibold text-base md:text-lg pr-4 text-ink">
                       {item.question}
                     </h3>
                     <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 bg-surface-2 ${
                         isOpen ? 'rotate-180' : ''
-                      } ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}
+                      }`}
                     >
                       <svg
-                        className={`w-4 h-4 ${
-                          isDark ? 'text-white/60' : 'text-gray-600'
-                        }`}
+                        className="w-4 h-4 text-ink-2"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -158,16 +122,8 @@ export function CleaningFAQ() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div
-                        className={`px-5 pb-6 pt-2 border-t ${
-                          isDark ? 'border-white/10' : 'border-gray-200'
-                        }`}
-                      >
-                        <p
-                          className={`text-sm md:text-base leading-relaxed ${
-                            isDark ? 'text-white/60' : 'text-gray-600'
-                          }`}
-                        >
+                      <div className="px-5 pb-6 pt-2 border-t border-line">
+                        <p className="text-sm md:text-base leading-relaxed text-ink-2">
                           {item.answer}
                         </p>
                       </div>
@@ -179,28 +135,19 @@ export function CleaningFAQ() {
           })}
         </div>
 
+        {/* CTA */}
         <div className="text-center mt-12">
-          <p
-            className={`text-sm mb-4 ${
-              isDark ? 'text-white/50' : 'text-gray-600'
-            }`}
-          >
+          <p className="text-sm mb-4 text-ink-2">
             {t('moreQuestions')}
           </p>
           <Link href={`/${locale}/cleaning/#contact`}>
             <button
               type="button"
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 ${
-                isDark
-                  ? 'bg-white/10 border border-white/20 text-white/80 hover:bg-white/20'
-                  : 'bg-gray-200 border border-gray-300 text-gray-800 hover:bg-gray-300'
-              }`}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-brand/10 border border-line-strong text-ink-2 hover:bg-brand/20 hover:text-ink"
             >
               <span>{t('contactButton')}</span>
               <svg
-                className={`w-4 h-4 ${
-                  isDark ? 'text-white/80' : 'text-gray-800'
-                }`}
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

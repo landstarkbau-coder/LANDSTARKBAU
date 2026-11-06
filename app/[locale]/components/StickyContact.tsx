@@ -2,20 +2,15 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useTheme } from '@/app/context/ThemeContext'
 
 export function StickyContact() {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
   const footerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    // Знаходимо футер на сторінці
     const findFooter = () => {
-      // Шукаємо футер за різними селекторами
       const footerSelectors = [
         'footer',
         '[data-footer]',
@@ -24,7 +19,7 @@ export function StickyContact() {
         'main + footer',
         'div:last-child > footer'
       ]
-      
+
       for (const selector of footerSelectors) {
         const element = document.querySelector(selector) as HTMLElement
         if (element) {
@@ -32,65 +27,51 @@ export function StickyContact() {
           return element
         }
       }
-      
-      // Якщо футер не знайдено, шукаємо останній елемент перед кінцем сторінки
+
       const allElements = document.querySelectorAll('body > *')
       if (allElements.length > 0) {
         const lastElement = allElements[allElements.length - 1] as HTMLElement
-        // Перевіряємо, чи це схоже на футер
         if (lastElement.tagName.toLowerCase() !== 'header') {
           footerRef.current = lastElement
           return lastElement
         }
       }
-      
+
       return null
     }
 
     const handleScroll = () => {
       const footer = footerRef.current || findFooter()
-      
+
       if (!footer) {
-        // Якщо футер не знайдено, використовуємо стару логіку
         setIsVisible(window.scrollY > 300)
         return
       }
 
       const footerRect = footer.getBoundingClientRect()
       const windowHeight = window.innerHeight
-      
-      // Обчислюємо відстань до футера
-      const distanceToFooter = footerRect.top - windowHeight + 100 // 100px - відступ для плавного зникнення
-      
-      // Кнопка видима, якщо:
-      // 1. Прогорнули більше 300px
-      // 2. Футер ще не досягнуто (або видима частина менше 100px)
+      const distanceToFooter = footerRect.top - windowHeight + 100
       const shouldBeVisible = window.scrollY > 300 && distanceToFooter > 0
-      
+
       if (shouldBeVisible !== isVisible) {
         setIsVisible(shouldBeVisible)
         if (!shouldBeVisible) {
-          setIsOpen(false) // Закриваємо меню при зникненні
+          setIsOpen(false)
         }
       }
     }
 
-    // Знаходимо футер при монтуванні
-    setTimeout(findFooter, 100) // Невелика затримка для завантаження DOM
+    setTimeout(findFooter, 100)
 
-    // Додаємо обробник з passive: true для кращої продуктивності
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
-    // Додаємо обробник для ресайзу (може змінити позицію футера)
     window.addEventListener('resize', handleScroll, { passive: true })
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
     }
   }, [isVisible])
 
-  // Додатковий ефект для відстеження змін у DOM (якщо футер додається динамічно)
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const footer = document.querySelector('footer, [data-footer], .footer, #footer')
@@ -111,6 +92,7 @@ export function StickyContact() {
     setIsOpen(!isOpen)
   }
 
+  // Брендові кольори месенджерів — НЕ змінюємо на токени
   const contactMethods = [
     {
       id: 'phone',
@@ -178,7 +160,7 @@ export function StickyContact() {
         ))}
       </div>
 
-      {/* Головна кнопка - ТЕЛЕФОН */}
+      {/* Головна кнопка — навмисно темна в обох темах (брендовий елемент) */}
       <button
         onClick={toggleOpen}
         onMouseEnter={() => setIsHovered(true)}
@@ -186,9 +168,10 @@ export function StickyContact() {
         className={`
           relative w-16 h-16 rounded-full shadow-2xl flex items-center justify-center
           transition-all duration-500
-          ${isOpen 
-            ? 'bg-red-600 hover:bg-red-700 rotate-90' 
-            : 'bg-[#111827] hover:bg-[#1a2332]'
+          ${
+            isOpen
+              ? 'bg-red-600 hover:bg-red-700 rotate-90'
+              : 'bg-[#111827] hover:bg-[#1a2332]'
           }
           ${isHovered ? 'scale-110' : 'scale-100'}
         `}
@@ -205,7 +188,7 @@ export function StickyContact() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
           </span>
-          
+
           {/* Іконка закриття (хрестик) */}
           <span className={`
             absolute inset-0 flex items-center justify-center transition-all duration-500
@@ -218,14 +201,17 @@ export function StickyContact() {
         </div>
 
         {/* Пульсуюча анімація з золотим кольором */}
-        <div className="absolute inset-0 rounded-full border-2 border-transparent animate-pulse-ring" style={{
-          borderColor: 'rgba(212, 168, 83, 0.3)'
-        }} />
-        
+        <div
+          className="absolute inset-0 rounded-full border-2 border-transparent animate-pulse-ring"
+          style={{
+            borderColor: 'rgba(212, 168, 83, 0.3)'
+          }}
+        />
+
         {/* Декоративне кільце при ховері */}
         <div className={`absolute -inset-2 rounded-full border-2 transition-all duration-500 ${
-          isHovered 
-            ? 'border-[#D4A853]/40 scale-100 opacity-100' 
+          isHovered
+            ? 'border-[#D4A853]/40 scale-100 opacity-100'
             : 'border-[#D4A853]/0 scale-75 opacity-0'
         }`} />
       </button>

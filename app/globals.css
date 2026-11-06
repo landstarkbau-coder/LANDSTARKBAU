@@ -1,7 +1,9 @@
 /* app/globals.css */
 @import "tailwindcss";
 
-/* ===== БАЗОВІ НАЛАШТУВАННЯ ===== */
+/* ================================================================
+   БАЗОВІ НАЛАШТУВАННЯ
+   ================================================================ */
 @theme {
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
 }
@@ -10,326 +12,367 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ===== ЗМІННІ ДЛЯ ТЕМ ===== */
+/* ================================================================
+   СЕМАНТИЧНІ КОЛЬОРИ (єдине джерело правди)
+   ----------------------------------------------------------------
+   Змінюйте значення тут — і весь сайт оновиться.
+   Імена токенів описують РОЛЬ, а не конкретний колір.
+   ================================================================ */
+
+/* --- СВІТЛА ТЕМА (за замовчуванням) --- */
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f3f4f6;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f9fafb;
-  --bg-input: #f9fafb;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --border-color: #e5e7eb;
+  /* Поверхні (фони) */
+  --surface: #ffffff;              /* основний фон сторінки */
+  --surface-2: #f3f4f6;            /* другорядний фон (секції) */
+  --surface-card: #ffffff;         /* фон карток */
+  --surface-card-hover: #f9fafb;   /* фон карток при hover */
+  --surface-input: #f9fafb;        /* фон input/textarea/select */
+  --surface-overlay: #ffffff;      /* фон мобільного меню / оверлеїв */
+
+  /* Header */
+  --bg-header: transparent;
+  --bg-header-scrolled: rgba(255, 255, 255, 0.9);
+
+  /* Текст (ink) */
+  --ink: #111827;                  /* основний текст */
+  --ink-2: #4b5563;                /* другорядний текст */
+  --ink-muted: #9ca3af;            /* приглушений текст / placeholder */
+  --ink-inverse: #ffffff;          /* текст на темному фоні */
+  --ink-on-brand: #ffffff;         /* текст на брендовому фоні */
+
+  /* Лінії / бордери */
+  --line: #e5e7eb;
+  --line-subtle: rgba(0, 0, 0, 0.1);
+  --line-strong: rgba(0, 0, 0, 0.25);
+
+  /* Бренд / акценти */
+  --brand: #111827;
+  --brand-hover: #374151;
+  --brand-muted: rgba(17, 24, 39, 0.4);
+
+  /* Статуси */
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+
+  /* Тіні */
   --shadow-color: rgba(0, 0, 0, 0.1);
   --shadow-hover: rgba(0, 0, 0, 0.15);
+
+  /* --- ЗАСТАРІЛІ АЛІАСИ (для зворотної сумісності) --- */
+  --bg-primary: var(--surface);
+  --bg-secondary: var(--surface-2);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--surface-card-hover);
+  --bg-input: var(--surface-input);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-muted);
+  --border-color: var(--line);
 }
 
+/* --- ТЕМНА ТЕМА (темно-зелена, темніша) --- */
 .dark {
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --bg-card: #1f2937;
-  --bg-card-hover: #374151;
-  --bg-input: #374151;
-  --text-primary: #ffffff;
-  --text-secondary: #d1d5db;
-  --text-muted: #6b7280;
-  --border-color: #374151;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --shadow-hover: rgba(0, 0, 0, 0.5);
+  /* Поверхні — темні зелені відтінки */
+  --surface: #0a1610;              /* майже чорний із зеленим — основний фон */
+  --surface-2: #102019;            /* трохи світліший — секції */
+  --surface-card: #172b1f;         /* ще світліший — картки */
+  --surface-card-hover: #1e3628;   /* hover карток */
+  --surface-input: #1a2e22;        /* input */
+  --surface-overlay: #0a1610;      /* мобільне меню */
+
+  --bg-header: transparent;
+  --bg-header-scrolled: rgba(10, 22, 16, 0.9);
+
+  --ink: #ffffff;
+  --ink-2: #c8d6cd;                /* трохи зеленуватий другорядний текст */
+  --ink-muted: #5a7062;            /* приглушений, зеленуватий */
+  --ink-inverse: #0a1610;
+  --ink-on-brand: #0a1610;         /* текст на білому бренді */
+
+  --line: #1e3628;                 /* зелений бордер */
+  --line-subtle: rgba(200, 214, 205, 0.08);
+  --line-strong: rgba(200, 214, 205, 0.25);
+
+  --brand: #ffffff;
+  --brand-hover: #d6e3db;
+  --brand-muted: rgba(200, 214, 205, 0.4);
+
+  --success: #4ade80;
+  --error: #f87171;
+  --warning: #fbbf24;
+
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow-hover: rgba(0, 0, 0, 0.6);
+}
+/* ================================================================
+   РЕЄСТРАЦІЯ ТОКЕНІВ У TAILWIND (v4)
+   ----------------------------------------------------------------
+   Доступні утиліти:
+     bg-surface, bg-surface-2, bg-surface-card, bg-surface-card-hover,
+     bg-surface-input, bg-surface-overlay
+     text-ink, text-ink-2, text-ink-muted, text-ink-inverse, text-ink-on-brand
+     border-line, border-line-subtle, border-line-strong
+     bg-brand, bg-brand-hover, bg-brand-muted
+     text-brand, text-brand-hover, text-brand-muted
+     text-success, bg-success, text-error, bg-error, text-warning, bg-warning
+   ================================================================ */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-card: var(--surface-card);
+  --color-surface-card-hover: var(--surface-card-hover);
+  --color-surface-input: var(--surface-input);
+  --color-surface-overlay: var(--surface-overlay);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-ink-on-brand: var(--ink-on-brand);
+
+  --color-line: var(--line);
+  --color-line-subtle: var(--line-subtle);
+  --color-line-strong: var(--line-strong);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-muted: var(--brand-muted);
+
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
 }
 
-/* ===== ГЛОБАЛЬНІ КЛАСИ ДЛЯ ТЕМ ===== */
-.bg-primary { background-color: var(--bg-primary); }
-.bg-secondary { background-color: var(--bg-secondary); }
-.bg-card { background-color: var(--bg-card); }
-.bg-card-hover { background-color: var(--bg-card-hover); }
-.bg-input { background-color: var(--bg-input); }
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-muted); }
-.border-theme { border-color: var(--border-color); }
+/* ================================================================
+   ЗАСТАРІЛІ ГЛОБАЛЬНІ КЛАСИ (для зворотної сумісності)
+   ================================================================ */
+.bg-primary { background-color: var(--surface); }
+.bg-secondary { background-color: var(--surface-2); }
+.bg-card { background-color: var(--surface-card); }
+.bg-card-hover { background-color: var(--surface-card-hover); }
+.bg-input { background-color: var(--surface-input); }
+.text-primary { color: var(--ink); }
+.text-secondary { color: var(--ink-2); }
+.text-muted { color: var(--ink-muted); }
+.border-theme { border-color: var(--line); }
 
-/* ===== АНІМАЦІЇ FADE ===== */
+/* ================================================================
+   АНІМАЦІЇ: FADE
+   ================================================================ */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-.animate-fade-in-down {
-  animation: fadeInDown 0.6s ease-out forwards;
-}
-.animate-fade-in-left {
-  animation: fadeInLeft 0.6s ease-out forwards;
-}
-.animate-fade-in-right {
-  animation: fadeInRight 0.6s ease-out forwards;
-}
+.animate-fade-in-up    { animation: fadeInUp    0.6s ease-out forwards; }
+.animate-fade-in-down  { animation: fadeInDown  0.6s ease-out forwards; }
+.animate-fade-in-left  { animation: fadeInLeft  0.6s ease-out forwards; }
+.animate-fade-in-right { animation: fadeInRight 0.6s ease-out forwards; }
+
 .animation-delay-100 { animation-delay: 0.1s; opacity: 0; }
 .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
 .animation-delay-300 { animation-delay: 0.3s; opacity: 0; }
 .animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
 
-/* ===== АНІМАЦІЇ SLIDE (для каруселі) ===== */
+/* ================================================================
+   АНІМАЦІЇ: SLIDE (карусель)
+   ================================================================ */
 @keyframes slide-up {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 0.6; transform: translateY(0); }
+  0%   { opacity: 0;    transform: translateY(40px); }
+  100% { opacity: 0.6;  transform: translateY(0); }
 }
-
 @keyframes slide-down {
-  0% { opacity: 0; transform: translateY(-40px); }
-  100% { opacity: 0.6; transform: translateY(0); }
+  0%   { opacity: 0;    transform: translateY(-40px); }
+  100% { opacity: 0.6;  transform: translateY(0); }
 }
-
 @keyframes slide-out-up {
-  0% { opacity: 0.6; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-40px); }
+  0%   { opacity: 0.6;  transform: translateY(0); }
+  100% { opacity: 0;    transform: translateY(-40px); }
 }
-
 @keyframes slide-out-down {
-  0% { opacity: 0.6; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(40px); }
+  0%   { opacity: 0.6;  transform: translateY(0); }
+  100% { opacity: 0;    transform: translateY(40px); }
 }
 
-.animate-slide-up {
-  animation: slide-up 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-}
-.animate-slide-down {
-  animation: slide-down 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-}
-.animate-slide-out-up {
-  animation: slide-out-up 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-}
-.animate-slide-out-down {
-  animation: slide-out-down 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-}
+.animate-slide-up      { animation: slide-up      0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+.animate-slide-down    { animation: slide-down    0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+.animate-slide-out-up  { animation: slide-out-up  0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+.animate-slide-out-down{ animation: slide-out-down 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
 
-/* ===== АНІМАЦІЇ ДЛЯ МОБІЛЬНИХ ===== */
+/* ================================================================
+   АНІМАЦІЇ: МОБІЛЬНІ
+   ================================================================ */
 @keyframes slide-in-mobile {
-  0% { opacity: 0; transform: translateX(50px); }
+  0%   { opacity: 0; transform: translateX(50px); }
   100% { opacity: 1; transform: translateX(0); }
 }
-
 .animate-slide-in-mobile {
   animation: slide-in-mobile 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
   opacity: 0;
 }
 
-/* ===== АНІМАЦІЇ ФОНУ (для Hero) ===== */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+/* ================================================================
+   АНІМАЦІЇ: ФОН (Hero)
+   ================================================================ */
 @keyframes backgroundZoom {
-  0% { transform: scale(1); }
+  0%   { transform: scale(1); }
   100% { transform: scale(1.15); }
 }
-
 @keyframes backgroundPan {
-  0% { object-position: 50% 50%; }
-  25% { object-position: 55% 45%; }
-  50% { object-position: 50% 55%; }
-  75% { object-position: 45% 50%; }
+  0%   { object-position: 50% 50%; }
+  25%  { object-position: 55% 45%; }
+  50%  { object-position: 50% 55%; }
+  75%  { object-position: 45% 50%; }
   100% { object-position: 50% 50%; }
 }
-
 @keyframes backgroundShake {
-  0% { transform: translate(0px, 0px); }
-  25% { transform: translate(2px, -1px); }
-  50% { transform: translate(-1px, 2px); }
-  75% { transform: translate(1px, -2px); }
+  0%   { transform: translate(0px, 0px); }
+  25%  { transform: translate(2px, -1px); }
+  50%  { transform: translate(-1px, 2px); }
+  75%  { transform: translate(1px, -2px); }
   100% { transform: translate(0px, 0px); }
 }
-
 @keyframes backgroundTilt {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(0.5deg) scale(1.05); }
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(0.5deg) scale(1.05); }
   100% { transform: rotate(0deg) scale(1); }
 }
-
 @keyframes backgroundBreathing {
-  0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.03); filter: brightness(1.05); }
-  100% { transform: scale(1); filter: brightness(1); }
+  0%   { transform: scale(1);    filter: brightness(1); }
+  50%  { transform: scale(1.03); filter: brightness(1.05); }
+  100% { transform: scale(1);    filter: brightness(1); }
 }
 
-/* ===== АНІМАЦІЇ ДЛЯ КОМПОНЕНТІВ ===== */
+/* ================================================================
+   АНІМАЦІЇ: КОМПОНЕНТИ
+   ================================================================ */
 @keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 0.4; }
-  100% { transform: scale(1); opacity: 0.8; }
+  0%   { transform: scale(1);    opacity: 0.8; }
+  50%  { transform: scale(1.1);  opacity: 0.4; }
+  100% { transform: scale(1);    opacity: 0.8; }
 }
-
 .animate-pulse-ring {
   animation: pulse-ring 2s ease-in-out infinite;
 }
 
-/* ===== СТИЛІ ДЛЯ SKELETON / LOADING ===== */
+/* ================================================================
+   SKELETON / LOADING
+   ================================================================ */
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
+  0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-
 .shimmer {
-  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--surface-card) 25%,
+    var(--surface-card-hover) 50%,
+    var(--surface-card) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
 
-/* ===== СТИЛІ ДЛЯ SCROLLBAR ===== */
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--surface-2);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--ink-muted);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--ink-2);
 }
 
-/* ===== СТИЛІ ДЛЯ SWIPER (карусель) ===== */
+/* ================================================================
+   SWIPER (карусель)
+   ================================================================ */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--text-primary) !important;
-  background: var(--bg-card);
+  color: var(--ink) !important;
+  background: var(--surface-card);
   backdrop-filter: blur(8px);
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
   box-shadow: 0 4px 12px var(--shadow-color);
 }
-
 .swiper-button-next:after,
 .swiper-button-prev:after {
   font-size: 16px !important;
   font-weight: bold;
 }
-
 .swiper-pagination-bullet {
-  background: var(--text-muted) !important;
+  background: var(--ink-muted) !important;
   opacity: 0.5 !important;
 }
-
 .swiper-pagination-bullet-active {
-  background: var(--text-primary) !important;
+  background: var(--ink) !important;
   opacity: 1 !important;
 }
 
-/* ===== СТИЛІ ДЛЯ ФОРМ ===== */
-input, textarea, select {
-  background-color: var(--bg-input);
-  color: var(--text-primary);
-  border-color: var(--border-color);
+/* ================================================================
+   ФОРМИ
+   ================================================================ */
+input,
+textarea,
+select {
+  background-color: var(--surface-input);
+  color: var(--ink);
+  border-color: var(--line);
 }
-
-input:focus, textarea:focus, select:focus {
-  border-color: var(--text-secondary);
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--ink-2);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.2);
+  box-shadow: 0 0 0 3px var(--brand-muted);
 }
-
 ::placeholder {
-  color: var(--text-muted);
+  color: var(--ink-muted);
 }
 
-/* ===== ДОДАТКОВІ УТИЛІТИ ===== */
+/* ================================================================
+   ДОДАТКОВІ УТИЛІТИ
+   ================================================================ */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-/* app/globals.css - додайте в кінець */
-
-/* Анімація для появи кнопок */
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-}
-
-/* Анімація пульсації */
-@keyframes pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.5;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-}
-
-.animate-pulse-ring {
-  animation: pulse-ring 2s ease-in-out infinite;
 }

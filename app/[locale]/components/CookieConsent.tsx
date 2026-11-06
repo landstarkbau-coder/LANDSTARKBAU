@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useTheme } from '@/app/context/ThemeContext';
 
 interface ConsentState {
   analytics: boolean;
@@ -11,8 +10,6 @@ export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [draft, setDraft] = useState<ConsentState>({ analytics: false, marketing: false });
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   useEffect(() => {
     const stored = localStorage.getItem('cookie_consent');
@@ -66,27 +63,30 @@ export function CookieConsent() {
   if (!showBanner) return null;
 
   // Базові класи, які повторюються
-  const panelClass = `fixed bottom-0 left-0 right-0 z-[9999] border-t transition-colors duration-300 ${
-    isDark
-      ? 'bg-gray-900/95 backdrop-blur-md border-white/10 text-white'
-      : 'bg-white/95 backdrop-blur-md border-gray-200 text-gray-900'
-  }`;
+  const panelClass =
+    'fixed bottom-0 left-0 right-0 z-[9999] border-t border-line bg-surface-overlay backdrop-blur-md text-ink transition-colors duration-300';
 
-  const secondaryBtn = `px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 border ${
-    isDark
-      ? 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:text-white'
-      : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
-  }`;
+  const secondaryBtn =
+    'px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 border border-line-strong bg-surface-card text-ink-2 hover:bg-surface-card-hover hover:text-ink';
 
-  const primaryBtn = `px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 border ${
-    isDark
-      ? 'bg-white/10 border-white/20 text-white hover:bg-white/20'
-      : 'bg-gray-900 border-gray-900 text-white hover:bg-gray-800'
-  }`;
+  const primaryBtn =
+    'px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 border bg-brand border-brand text-ink-on-brand hover:bg-brand-hover hover:border-brand-hover';
 
-  const linkBtn = `text-xs underline transition-colors ${
-    isDark ? 'text-white/40 hover:text-white' : 'text-gray-400 hover:text-gray-700'
-  }`;
+  const linkBtn =
+    'text-xs underline text-ink-muted hover:text-ink transition-colors';
+
+  // Стилі для перемикача
+  const switchTrack = (active: boolean) =>
+    `mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 flex-shrink-0 transition-colors ${
+      active
+        ? 'bg-brand'
+        : 'bg-line-strong'
+    }`;
+
+  const switchKnob = (active: boolean) =>
+    `w-4 h-4 rounded-full shadow transition-transform ${
+      active ? 'translate-x-4' : 'translate-x-0'
+    } bg-ink-on-brand`;
 
   return (
     <div role="dialog" aria-label="Cookie-Einstellungen" className={panelClass}>
@@ -96,7 +96,7 @@ export function CookieConsent() {
           /* ---------- ПЕРШИЙ РІВЕНЬ ---------- */
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
             <div className="flex-1 min-w-0">
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-white/60' : 'text-gray-500'}`}>
+              <p className="text-sm leading-relaxed text-ink-2">
                 Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.
                 Notwendige Cookies sind für den Betrieb erforderlich.
                 Analyse- und Marketing-Cookies helfen uns, unsere Website zu verbessern.
@@ -124,87 +124,67 @@ export function CookieConsent() {
           /* ---------- ДРУГИЙ РІВЕНЬ ---------- */
           <div className="flex flex-col gap-5">
             <div>
-              <h3 className={`text-sm font-semibold tracking-wider mb-3 ${isDark ? 'text-white' : 'text-gray-800'}`}>
+              <h3 className="text-sm font-semibold tracking-wider mb-3 text-ink">
                 Cookie-Einstellungen
               </h3>
-              <p className={`text-xs leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
+              <p className="text-xs leading-relaxed text-ink-muted">
                 Wählen Sie aus, welche Kategorien Sie zulassen möchten. Notwendige Cookies
                 sind immer aktiv, da sie für den Betrieb der Website erforderlich sind.
               </p>
             </div>
 
             {/* Категорія 1 — Notwendige (заблокована) */}
-            <div className={`flex items-start gap-3 p-3 rounded-lg border ${
-              isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'
-            }`}>
-              <div className={`mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 flex-shrink-0 ${
-                isDark ? 'bg-white/30' : 'bg-gray-400'
-              }`}>
-                <div className="w-4 h-4 rounded-full bg-white shadow" />
+            <div className="flex items-start gap-3 p-3 rounded-lg border border-line bg-surface-card">
+              <div className="mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 flex-shrink-0 bg-line-strong">
+                <div className="w-4 h-4 rounded-full bg-ink-on-brand shadow" />
               </div>
               <div className="flex-1">
-                <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-800'}`}>
+                <div className="text-sm font-medium text-ink">
                   Notwendige Cookies
                 </div>
-                <div className={`text-xs mt-0.5 ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
+                <div className="text-xs mt-0.5 text-ink-muted">
                   Erforderlich für den Betrieb der Website. Können nicht deaktiviert werden.
                 </div>
               </div>
             </div>
 
             {/* Категорія 2 — Analyse */}
-            <div className={`flex items-start gap-3 p-3 rounded-lg border ${
-              isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'
-            }`}>
+            <div className="flex items-start gap-3 p-3 rounded-lg border border-line bg-surface-card">
               <button
                 type="button"
                 role="switch"
                 aria-checked={draft.analytics}
                 onClick={() => setDraft((d) => ({ ...d, analytics: !d.analytics }))}
-                className={`mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 flex-shrink-0 transition-colors ${
-                  draft.analytics
-                    ? isDark ? 'bg-white/70' : 'bg-gray-900'
-                    : isDark ? 'bg-white/20' : 'bg-gray-300'
-                }`}
+                className={switchTrack(draft.analytics)}
               >
-                <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform ${
-                  draft.analytics ? 'translate-x-4' : 'translate-x-0'
-                }`} />
+                <div className={switchKnob(draft.analytics)} />
               </button>
               <div className="flex-1">
-                <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-800'}`}>
+                <div className="text-sm font-medium text-ink">
                   Analyse-Cookies
                 </div>
-                <div className={`text-xs mt-0.5 ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
+                <div className="text-xs mt-0.5 text-ink-muted">
                   Helfen uns zu verstehen, wie Besucher die Website nutzen (z. B. Google Analytics).
                 </div>
               </div>
             </div>
 
             {/* Категорія 3 — Marketing */}
-            <div className={`flex items-start gap-3 p-3 rounded-lg border ${
-              isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-gray-50'
-            }`}>
+            <div className="flex items-start gap-3 p-3 rounded-lg border border-line bg-surface-card">
               <button
                 type="button"
                 role="switch"
                 aria-checked={draft.marketing}
                 onClick={() => setDraft((d) => ({ ...d, marketing: !d.marketing }))}
-                className={`mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 flex-shrink-0 transition-colors ${
-                  draft.marketing
-                    ? isDark ? 'bg-white/70' : 'bg-gray-900'
-                    : isDark ? 'bg-white/20' : 'bg-gray-300'
-                }`}
+                className={switchTrack(draft.marketing)}
               >
-                <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform ${
-                  draft.marketing ? 'translate-x-4' : 'translate-x-0'
-                }`} />
+                <div className={switchKnob(draft.marketing)} />
               </button>
               <div className="flex-1">
-                <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-800'}`}>
+                <div className="text-sm font-medium text-ink">
                   Marketing-Cookies
                 </div>
-                <div className={`text-xs mt-0.5 ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
+                <div className="text-xs mt-0.5 text-ink-muted">
                   Werden verwendet, um Ihnen relevante Werbung anzuzeigen (z. B. Meta Pixel).
                 </div>
               </div>
