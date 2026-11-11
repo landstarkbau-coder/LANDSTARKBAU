@@ -72,7 +72,9 @@
     "aussenbeleuchtungDesc": "Magische Abendstimmung im Garten: Planung gemütlicher Außenbeleuchtung und Montage stilvoller Architekturelemente.",
     "gartenmobel": "PAVILLONS & SPIELPLÄTZE",
     "gartenmobelDesc": "Raum zum Leben und Erholen: Fachgerechte Montage von Pavillons, Kinderspielplätzen und Sportanlagen.",
-    "allServices": "ALLE LEISTUNGEN ENTDECKEN"
+    "allServices": "ALLE LEISTUNGEN ENTDECKEN",
+    "moreService": "Mehr über die Leistung",
+    "lessService": "Weniger anzeigen"
   },
    "about": {
     "subtitle": "Über uns",

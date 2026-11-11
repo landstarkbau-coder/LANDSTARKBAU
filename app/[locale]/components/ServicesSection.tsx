@@ -3,10 +3,26 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { ImageGallery } from './ImageGallery'
+import { ImageLightbox } from './ImageLightbox'
+
+// 🔧 ТИМЧАСОВО: спільна галерея для всіх послуг.
+// Замініть на реальні фото кожної послуги, коли будуть готові:
+//   gallery: ['/services/pflasterarbeiten/1.jpg', ...]
+const DEFAULT_GALLERY = [
+  '/brandbook1.jpg',
+  '/brandbook2.jpg',
+  '/brandbook3.jpg',
+  '/brandbook4.jpg',
+  '/brandbook5.jpg',
+]
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [openServiceId, setOpenServiceId] = useState<string | null>(null)
+  // Один лайтбокс на всю секцію (а не 16 окремих)
+  const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('services')
 
@@ -29,6 +45,7 @@ export function ServicesSection() {
   }, [])
 
   // ВСІ послуги з JSON (16 сервісів)
+  // Поле `gallery` — опційне; якщо не задане, використовується DEFAULT_GALLERY.
   const allServices = [
     {
       id: '1',
@@ -197,127 +214,175 @@ export function ServicesSection() {
   const initialServices = allServices.slice(0, 6)
   const hiddenServices = allServices.slice(6)
 
-  return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative py-16 md:py-24 overflow-hidden bg-surface"
-    >
+  const toggleService = (id: string) => {
+    setOpenServiceId((prev) => (prev === id ? null : id))
+  }
 
-      {/* Анімовані геометричні фігури */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-line-subtle rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-line-subtle rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-line-subtle rounded-full blur-2xl" />
-        <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-line-subtle rounded-full blur-2xl" />
+  // Рендер однієї картки послуги
+  const renderServiceCard = (service: (typeof allServices)[0], idx: number) => {
+    const isOpen = openServiceId === service.id
+    const gallery = (service as { gallery?: string[] }).gallery || DEFAULT_GALLERY
 
-        <svg className="absolute bottom-0 left-0 w-full opacity-5 text-ink" viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <path fill="currentColor" fillOpacity="1" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
-        </svg>
-      </div>
-
-      {/* Тонка сітка — через currentColor */}
+    return (
       <div
-        className="absolute inset-0 opacity-10 text-ink pointer-events-none"
+        key={service.id}
+        className="group relative rounded-xl transition-all duration-500 border border-line bg-surface-card hover:bg-surface-card-hover hover:border-line-strong"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='currentColor' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat',
+          animation: isVisible
+            ? `fadeInUp 0.5s ease-out ${idx * 0.08}s forwards`
+            : 'none',
+          opacity: 0,
         }}
-      />
-
-      <div className="relative container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 z-10">
-
-        {/* Заголовок секції */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
-            {t('subtitle')}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-ink">
-            {t('title')}
-          </h2>
-          <div className="w-12 h-px bg-gradient-to-r from-transparent via-line-strong to-transparent mx-auto mt-4" />
-        </div>
-
-        {/* Сітка послуг */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {initialServices.map((service, idx) => (
-            <div
-              key={service.id}
-              className="group relative rounded-xl p-6 transition-all duration-500 hover:-translate-y-1 border border-line bg-surface-card hover:bg-surface-card-hover hover:border-line-strong"
-              style={{
-                animation: isVisible ? `fadeInUp 0.5s ease-out ${idx * 0.1}s forwards` : 'none',
-                opacity: 0,
-              }}
-            >
-              <div className="transition-all duration-500 mb-4 flex justify-center text-ink-muted group-hover:text-ink">
-                {service.icon}
-              </div>
-              <h3 className="font-semibold text-lg mb-2 text-center text-ink">
-                {service.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-center transition-colors text-ink-muted group-hover:text-ink-2">
-                {service.description}
-              </p>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 transition-all duration-500 group-hover:w-12 rounded-full bg-line-strong" />
-            </div>
-          ))}
-        </div>
-
-        {/* Акордеон з прихованими послугами */}
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 transition-all duration-500 overflow-hidden ${
-            isExpanded ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0 mt-0'
-          }`}
+      >
+        {/* Кнопка-заголовок акордеону */}
+        <button
+          type="button"
+          onClick={() => toggleService(service.id)}
+          aria-expanded={isOpen}
+          className="w-full text-left p-6 flex flex-col items-center"
         >
-          {hiddenServices.map((service, idx) => (
-            <div
-              key={service.id}
-              className="group relative rounded-xl p-6 transition-all duration-500 hover:-translate-y-1 border border-line bg-surface-card hover:bg-surface-card-hover hover:border-line-strong"
-              style={{
-                animation: isVisible && isExpanded ? `fadeInUp 0.5s ease-out ${idx * 0.05}s forwards` : 'none',
-                opacity: 0,
-              }}
-            >
-              <div className="transition-all duration-500 mb-4 flex justify-center text-ink-muted group-hover:text-ink">
-                {service.icon}
-              </div>
-              <h3 className="font-semibold text-lg mb-2 text-center text-ink">
-                {service.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-center transition-colors text-ink-muted group-hover:text-ink-2">
-                {service.description}
-              </p>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 transition-all duration-500 group-hover:w-12 rounded-full bg-line-strong" />
-            </div>
-          ))}
-        </div>
+          <div className="transition-all duration-500 mb-4 flex justify-center text-ink-muted group-hover:text-ink">
+            {service.icon}
+          </div>
+          <h3 className="font-semibold text-lg mb-2 text-center text-ink">
+            {service.title}
+          </h3>
+          <p className="text-sm leading-relaxed text-center transition-colors text-ink-muted group-hover:text-ink-2 mb-4">
+            {service.description}
+          </p>
 
-        <div className="text-center mt-12">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="group transition-colors inline-flex items-center gap-2 text-sm text-ink-muted hover:text-ink"
-          >
-            <span>{isExpanded ? 'SHOW LESS' : t('allServices')}</span>
+          {/* Кнопка "Mehr über die Leistung" — локалізована */}
+          <span className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-brand/10 text-ink-2 group-hover:bg-brand/20 group-hover:text-ink">
+            <span>{isOpen ? t('lessService') : t('moreService')}</span>
             <svg
-              className={`w-4 h-4 transition-transform duration-300 ${
-                isExpanded ? 'rotate-180' : 'group-hover:translate-x-1'
-              }`}
+              className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={isExpanded ? 'M5 15l7-7 7 7' : 'M17 8l4 4m0 0l-4 4m4-4H3'}
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-          </button>
+          </span>
+        </button>
+
+        {/* Акордеон-контент: галерея */}
+        <div
+          className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="px-4 pb-5 pt-2 border-t border-line">
+              <ImageGallery
+                images={gallery}
+                onImageClick={(index) => setLightbox({ images: gallery, index })}
+                altPrefix={service.title}
+                columns={2}
+              />
+            </div>
+          </div>
         </div>
 
+        {/* Декоративна нижня лінія при hover (не показуємо, коли відкрито) */}
+        {!isOpen && (
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 transition-all duration-500 group-hover:w-12 rounded-full bg-line-strong" />
+        )}
       </div>
+    )
+  }
 
-    </section>
+  return (
+    <>
+      <section
+        id="services"
+        ref={sectionRef}
+        className="relative py-16 md:py-24 overflow-hidden bg-surface"
+      >
+
+        {/* Анімовані геометричні фігури */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -left-40 w-80 h-80 bg-line-subtle rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-line-subtle rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-line-subtle rounded-full blur-2xl" />
+          <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-line-subtle rounded-full blur-2xl" />
+
+          <svg className="absolute bottom-0 left-0 w-full opacity-5 text-ink" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="currentColor" fillOpacity="1" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
+          </svg>
+        </div>
+
+        {/* Тонка сітка — через currentColor */}
+        <div
+          className="absolute inset-0 opacity-10 text-ink pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='currentColor' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+          }}
+        />
+
+        <div className="relative container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 z-10">
+
+          {/* Заголовок секції */}
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+              {t('subtitle')}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink">
+              {t('title')}
+            </h2>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-line-strong to-transparent mx-auto mt-4" />
+          </div>
+
+          {/* Сітка послуг */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            {initialServices.map((service, idx) => renderServiceCard(service, idx))}
+          </div>
+
+          {/* Акордеон з прихованими послугами */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 items-start transition-all duration-500 overflow-hidden ${
+              isExpanded ? 'max-h-[9000px] opacity-100' : 'max-h-0 opacity-0 mt-0'
+            }`}
+          >
+            {hiddenServices.map((service, idx) => renderServiceCard(service, idx))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="group transition-colors inline-flex items-center gap-2 text-sm text-ink-muted hover:text-ink"
+            >
+              <span>{isExpanded ? t('lessService') : t('allServices')}</span>
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  isExpanded ? 'rotate-180' : 'group-hover:translate-x-1'
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={isExpanded ? 'M5 15l7-7 7 7' : 'M17 8l4 4m0 0l-4 4m4-4H3'}
+                />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* Lightbox — один на всю секцію, рендериться через Portal у <body>,
+          тому перекриває хедер, StickyContact і будь-що інше. */}
+      <ImageLightbox
+        images={lightbox?.images ?? []}
+        openIndex={lightbox ? lightbox.index : null}
+        onClose={() => setLightbox(null)}
+        altPrefix="Service"
+      />
+    </>
   )
 }

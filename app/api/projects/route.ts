@@ -2,10 +2,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-type Locale = 'de' | 'en' | 'ua' | 'ru'
+type Locale = 'de' | 'en' | 'uk' | 'ru'
 
 // ─── Хелпер: вибір локалізованого поля ───────────────
-function pick<T>(locale: Locale, values: { de: T; en: T; ua: T; ru: T }): T {
+function pick<T>(locale: Locale, values: { de: T; en: T; uk: T; ru: T }): T {
   return values[locale] ?? values.de
 }
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
     const rawLocale = searchParams.get('locale') || 'de'
-    const locale: Locale = ['de', 'en', 'ua', 'ru'].includes(rawLocale)
+    const locale: Locale = ['de', 'en', 'uk', 'ru'].includes(rawLocale)
       ? (rawLocale as Locale)
       : 'de'
 
@@ -31,43 +31,43 @@ export async function GET(request: NextRequest) {
       name: pick(locale, {
         de: project.nameDe,
         en: project.nameEn,
-        ua: project.nameUa,
+        uk: project.nameUa,
         ru: project.nameRu,
       }),
       subtitle: pick(locale, {
         de: project.subtitleDe,
         en: project.subtitleEn,
-        ua: project.subtitleUa,
+        uk: project.subtitleUa,
         ru: project.subtitleRu,
       }),
       location: pick(locale, {
         de: project.locationDe,
         en: project.locationEn,
-        ua: project.locationUa,
+        uk: project.locationUa,
         ru: project.locationRu,
       }),
       description: pick(locale, {
         de: project.descriptionDe,
         en: project.descriptionEn,
-        ua: project.descriptionUa,
+        uk: project.descriptionUa,
         ru: project.descriptionRu,
       }),
       category: pick(locale, {
         de: project.categoryDe,
         en: project.categoryEn,
-        ua: project.categoryUa,
+        uk: project.categoryUa,
         ru: project.categoryRu,
       }),
       services: pick(locale, {
         de: project.servicesDe,
         en: project.servicesEn,
-        ua: project.servicesUa,
+        uk: project.servicesUa,
         ru: project.servicesRu,
       }),
       materials: pick(locale, {
         de: project.materialsDe,
         en: project.materialsEn,
-        ua: project.materialsUa,
+        uk: project.materialsUa,
         ru: project.materialsRu,
       }),
 

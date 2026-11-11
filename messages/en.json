@@ -71,7 +71,9 @@
     "aussenbeleuchtungDesc": "Evening garden magic: custom outdoor lighting setups and installation of stylish structural elements.",
     "gartenmobel": "GAZEBOS & PLAY AREAS",
     "gartenmobelDesc": "Spaces built for living and fun: professional installation of gazebos, play areas, and sports zones.",
-    "allServices": "DISCOVER ALL SERVICES"
+    "allServices": "DISCOVER ALL SERVICES",
+    "moreService": "More about the service",
+    "lessService": "Show less"
   },
    "about": {
     "subtitle": "About us",
