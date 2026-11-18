@@ -9,7 +9,8 @@ import authConfig from "./auth.config"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma) as Adapter,
+  // Приводимо тип через unknown, щоб обійти конфлікт Prisma 7 та Auth.js
+  adapter: PrismaAdapter(prisma as any) as Adapter,
   session: { strategy: "jwt" },
   providers: [
     Credentials({
