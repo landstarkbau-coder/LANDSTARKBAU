@@ -1,10 +1,7 @@
 // app/[locale]/layout.tsx
-
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import "@/app/globals.css";
 
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -14,16 +11,6 @@ import { StickyContact } from "./components/StickyContact";
 import { CookieConsent } from "./components/CookieConsent";
 import { AnalyticsGate } from "./components/AnalyticsGate";
 import { ConsentScript } from "./components/ConsentScript";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // --- JSON-LD КОМПОНЕНТ ---
 function JsonLd({ locale }: { locale: string }) {
@@ -44,7 +31,7 @@ function JsonLd({ locale }: { locale: string }) {
     "telephone": "+491601101030",
     "email": "landstarkbau@gmail.com",
     "priceRange": "$$",
-    "image": "https://landstarkbau.de/og-image.png", // <-- Змінено на .png
+    "image": "https://landstarkbau.de/og-image.png",
     "logo": "https://landstarkbau.de/logoheader1.png",
     "address": {
       "@type": "PostalAddress",
@@ -76,7 +63,7 @@ function JsonLd({ locale }: { locale: string }) {
   );
 }
 
-// --- ГЕНЕРАЦІЯ МЕТАДАНИХ ---
+// --- ГЕНЕРАЦІЯ МЕТАДАНИХ (ВАШ ОРИГІНАЛЬНИЙ КОД) ---
 export async function generateMetadata({ 
   params 
 }: { 
@@ -157,8 +144,8 @@ export async function generateMetadata({
   };
 }
 
-// --- ГОЛОВНИЙ ЛЕЙАУТ ---
-export default async function RootLayout({
+// --- ГОЛОВНИЙ ЛЕЙАУТ (БЕЗ <html>/<body>) ---
+export default async function LocaleLayout({
   children,
   params,
 }: Readonly<{
@@ -169,34 +156,26 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* JSON-LD Schema */}
-        <JsonLd locale={locale} />
+    <>
+      <JsonLd locale={locale} />
+      <ConsentScript />
+      <AnalyticsGate gaId="G-LPX6LEGMTD" />
 
-        {/* Consent Mode default */}
-        <ConsentScript />
+      <ThemeProvider>
+        <CookieConsent />
+        <NextIntlClientProvider messages={messages}>
+          <Header />
 
-        <AnalyticsGate gaId="G-LPX6LEGMTD" />
+          <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+            {children}
+          </main>
 
-        <ThemeProvider>
-          <CookieConsent />
-          <NextIntlClientProvider messages={messages}>
-            <Header />
+          <Footer />
 
-            <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-              {children}
-            </main>
-
-            <Footer />
-
-            <ScrollToHash />
-            <StickyContact />
-          </NextIntlClientProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ScrollToHash />
+          <StickyContact />
+        </NextIntlClientProvider>
+      </ThemeProvider>
+    </>
   );
 }

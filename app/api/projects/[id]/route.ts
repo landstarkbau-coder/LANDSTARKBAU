@@ -91,7 +91,11 @@ export async function GET(
       region: project.region,
       area: project.area,
       year: project.year,
-      gallery: project.gallery,
+      
+      // ВИПРАВЛЕНО: перетворюємо об'єкти на рядки
+      gallery: Array.isArray(project.gallery) 
+        ? (project.gallery as any[]).map((item: any) => typeof item === 'string' ? item : item.url)
+        : [],
     }
 
     return NextResponse.json(transformedProject)
