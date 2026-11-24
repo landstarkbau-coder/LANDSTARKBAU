@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound, useParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
+import { Loader } from '../../components/Loader' // ← Імпорт лоадера
 
 interface Project {
   id: string
@@ -44,11 +45,11 @@ export default function ProjectDetailClient() {
         }
         const data = await response.json()
         setProject(data)
-        setLoading(false)
       } catch (error) {
         console.error('Error fetching project:', error)
-        setLoading(false)
         notFound()
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -91,12 +92,9 @@ export default function ProjectDetailClient() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isLightboxOpen, project])
 
+  // Використовуємо преміальний лоадер
   if (loading) {
-    return (
-      <main className="min-h-screen pt-32 pb-20 flex items-center justify-center bg-surface-2">
-        <div className="w-12 h-12 border-2 rounded-full animate-spin border-line-strong border-t-ink" />
-      </main>
-    )
+    return <Loader />
   }
 
   if (!project) {
@@ -191,7 +189,7 @@ export default function ProjectDetailClient() {
                 {project.materials.map((material) => (
                   <span
                     key={material}
-                    className="px-3 py-1 rounded-full text-sm bg-surface-card text-ink-muted"
+                    className="px-3 py-1 rounded-full text-sm border border-line bg-surface-card text-ink-2"
                   >
                     {material}
                   </span>
@@ -328,7 +326,6 @@ export default function ProjectDetailClient() {
               className="object-contain"
               sizes="90vw"
             />
-
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full text-white/80 text-sm z-20">
               {currentImageIndex + 1} / {project.gallery.length}
             </div>

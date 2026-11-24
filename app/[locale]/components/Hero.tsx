@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
+import { Loader } from './Loader'
 
 interface Project {
   id: string
@@ -31,9 +32,9 @@ export function Hero() {
         const response = await fetch(`/api/projects?locale=${locale}`)
         const data = await response.json()
         setProjects(data)
-        setLoading(false)
       } catch (error) {
         console.error('Error fetching projects:', error)
+      } finally {
         setLoading(false)
       }
     }
@@ -50,12 +51,9 @@ export function Hero() {
     return () => clearInterval(interval)
   }, [projects.length])
 
-  if (loading) {
-    return (
-      <div className="relative w-full min-h-screen bg-surface flex items-center justify-center">
-        <div className="w-12 h-12 border-2 border-line-strong border-t-ink rounded-full animate-spin" />
-      </div>
-    )
+  // Показуємо лоадер лише при першому завантаженні (коли ще немає даних)
+  if (loading && projects.length === 0) {
+    return <Loader />
   }
 
   if (projects.length === 0) {
@@ -122,9 +120,6 @@ export function Hero() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70 md:to-black/60" />
       </div>
-
-      {/* Додаткова накладка для читабельності */}
-      {/* <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" /> */}
 
       {/* Основний контент */}
       <div className="relative mt-18 lg:mt-0 min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-8 sm:py-12 md:py-16">

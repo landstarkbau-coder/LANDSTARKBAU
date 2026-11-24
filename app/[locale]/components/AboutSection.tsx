@@ -58,7 +58,7 @@ export function AboutSection() {
             {/* Ліва колонка - текст */}
             <div className="w-full lg:w-1/2 space-y-6">
               <div>
-                <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+                <p className="text-lg tracking-[0.3em] uppercase mb-3 text-ink-muted">
                   {t('subtitle')}
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink">

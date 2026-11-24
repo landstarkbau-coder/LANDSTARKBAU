@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
+import { Loader } from '../components/Loader'
 
 interface Project {
   id: string
@@ -32,9 +33,9 @@ export default function ProjectsClient() {
         const response = await fetch(`/api/projects?locale=${locale}`)
         const data = await response.json()
         setProjects(data)
-        setLoading(false)
       } catch (error) {
         console.error('Error fetching projects:', error)
+      } finally {
         setLoading(false)
       }
     }
@@ -42,12 +43,9 @@ export default function ProjectsClient() {
     fetchProjects()
   }, [locale])
 
-  if (loading) {
-    return (
-      <main className="min-h-screen pt-32 pb-20 flex items-center justify-center bg-surface-2">
-        <div className="w-12 h-12 border-2 rounded-full animate-spin border-line-strong border-t-ink" />
-      </main>
-    )
+  // Показуємо лоадер лише при першому завантаженні (коли ще немає даних)
+  if (loading && projects.length === 0) {
+    return <Loader />
   }
 
   return (
@@ -57,7 +55,7 @@ export default function ProjectsClient() {
 
         {/* Заголовок */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+          <p className="text-xl tracking-[0.3em] uppercase mb-3 text-ink-muted">
             {t('subtitle')}
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-ink">

@@ -324,7 +324,7 @@ export function ServicesSection() {
 
           {/* Заголовок секції */}
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+            <p className="text-lg tracking-[0.3em] uppercase mb-3 text-ink-muted">
               {t('subtitle')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-ink">

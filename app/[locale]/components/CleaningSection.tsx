@@ -4,6 +4,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+// Імпорт іконок з Lucide
+import { Building2, Home, Sparkles, SprayCan } from 'lucide-react'
 
 export function CleaningSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -28,11 +30,12 @@ export function CleaningSection() {
     return () => observer.disconnect()
   }, [])
 
+  // Заміна емодзі на компоненти Lucide
   const services = [
-    { key: 'service1', icon: '🏢' },
-    { key: 'service2', icon: '🏠' },
-    { key: 'service3', icon: '🪟' },
-    { key: 'service4', icon: '🧹' },
+    { key: 'service1', icon: Building2 },
+    { key: 'service2', icon: Home },
+    { key: 'service3', icon: Sparkles },
+    { key: 'service4', icon: SprayCan },
   ]
 
   return (
@@ -64,7 +67,7 @@ export function CleaningSection() {
           {/* Права колонка - текст */}
           <div className="w-full lg:w-1/2 order-1 lg:order-2 space-y-6">
             <div>
-              <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+              <p className="text-lg tracking-[0.3em] uppercase mb-3 text-ink-muted">
                 {t('subtitle')}
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink">
@@ -83,24 +86,27 @@ export function CleaningSection() {
 
             {/* Список послуг */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {services.map((service) => (
-                <div
-                  key={service.key}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-line bg-surface-card hover:bg-surface-card-hover transition-colors duration-300"
-                >
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg bg-surface-2">
-                    {service.icon}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold mb-1 text-ink">
-                      {t(`${service.key}Title`)}
+              {services.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div
+                    key={service.key}
+                    className="flex items-start gap-3 p-4 rounded-xl border border-line bg-surface-card hover:bg-surface-card-hover transition-colors duration-300"
+                  >
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-surface-2 text-brand">
+                      <Icon className="w-5 h-5" strokeWidth={2} />
                     </div>
-                    <div className="text-xs leading-relaxed text-ink-muted">
-                      {t(`${service.key}Desc`)}
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-semibold mb-1 text-ink">
+                        {t(`${service.key}Title`)}
+                      </div>
+                      <div className="text-xs leading-relaxed text-ink-muted">
+                        {t(`${service.key}Desc`)}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* CTA кнопка */}

@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-
+import { Suspense } from "react";
+import Loading from "../loading";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ScrollToHash } from "./components/ScrollToHash";
@@ -165,11 +166,11 @@ export default async function LocaleLayout({
         <CookieConsent />
         <NextIntlClientProvider messages={messages}>
           <Header />
-
-          <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+            <Suspense fallback={<Loading />}>
+          <main className="min-h-screen transition-colors duration-300">
             {children}
           </main>
-
+          </Suspense>
           <Footer />
 
           <ScrollToHash />

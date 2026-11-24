@@ -15,8 +15,8 @@ const adapter = new PrismaPg(pool)
 const prisma = new PrismaClient({ adapter })
 
 async function main() {
-  const email = 'admin@example.com'
-  const password = 'admin123' // ЗМІНІТЬ ЦЕ!
+  const email = 'landstarkbau@gmail.com'
+  const password = 'landstarkbau1981' 
   
   const existingUser = await prisma.user.findUnique({ where: { email } })
   if (existingUser) {
