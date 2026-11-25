@@ -87,6 +87,43 @@
     "brandbookTitle": "НАШ БРЕНДБУК",
     "brandbookDesc": "Как нас узнать — наши цвета, наш логотип, наш стиль."
   },
+  "map": {
+    "subtitle": "География нашей работы",
+    "title": "Наши проекты по всей Германии",
+    "description": "Изучите реализованные проекты на интерактивной карте.",
+    "selectCity": "Выберите город на карте",
+    "selectCityDesc": "Нажмите на маркер, чтобы увидеть проекты.",
+    "projectsCount": "проектов",
+
+    "loading": "Загрузка проектов...",
+    "errorTitle": "Не удалось загрузить проекты",
+    "errorDesc": "Пожалуйста, попробуйте позже.",
+    "tryAgain": "Попробовать снова",
+
+    "mapHeaderTitle": "Локации проектов",
+    "mapHeaderSubtitle": "Германия · Интерактивная карта",
+    "citiesCount": "{count} городов",
+    "cityAriaLabel": "{city}: {count} проектов",
+
+    "legendProjectLocations": "Локации проектов",
+    "legendNumberProjects": "Количество проектов",
+    "legendSelectedCity": "Выбранный город",
+
+    "sidebarEyebrow": "Изучите нашу работу",
+    "sidebarTitle": "Наши проекты",
+    "projectsCountInCity": "{count} проектов",
+    "clearSelection": "Сбросить выбор",
+    "browseByLocation": "Обзор по локации",
+    "exploreMap": "Изучите карту",
+
+    "projectNumber": "ПРОЕКТ #{number}",
+    "mappedProjects": "{count} проектов на карте",
+    "unlocatedProjects": "+{count} без локации",
+
+    "selectedLocation": "Выбранная локация",
+    "close": "Закрыть",
+    "closePanel": "Закрыть панель проектов"
+  },
   "process": {
     "subtitle": "Как мы работаем",
     "title": "НАШИ ЭТАПЫ",

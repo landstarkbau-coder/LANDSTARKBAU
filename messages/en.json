@@ -87,6 +87,43 @@
     "brandbookTitle": "OUR BRAND BOOK",
     "brandbookDesc": "How to recognize us – our colors, our logo, our style."
   },
+  "map": {
+    "subtitle": "The geography of our work",
+    "title": "Our projects across Germany",
+    "description": "Explore completed projects on the interactive map.",
+    "selectCity": "Select a city on the map",
+    "selectCityDesc": "Click a marker to see the projects.",
+    "projectsCount": "projects",
+
+    "loading": "Loading projects...",
+    "errorTitle": "Unable to load projects",
+    "errorDesc": "Please try again later.",
+    "tryAgain": "Try again",
+
+    "mapHeaderTitle": "Project locations",
+    "mapHeaderSubtitle": "Germany · Interactive map",
+    "citiesCount": "{count} cities",
+    "cityAriaLabel": "{city}: {count} projects",
+
+    "legendProjectLocations": "Project locations",
+    "legendNumberProjects": "Number of projects",
+    "legendSelectedCity": "Selected city",
+
+    "sidebarEyebrow": "Explore our work",
+    "sidebarTitle": "Our projects",
+    "projectsCountInCity": "{count} projects",
+    "clearSelection": "Clear selection",
+    "browseByLocation": "Browse by location",
+    "exploreMap": "Explore the map",
+
+    "projectNumber": "PROJECT #{number}",
+    "mappedProjects": "{count} mapped projects",
+    "unlocatedProjects": "+{count} unlocated",
+
+    "selectedLocation": "Selected location",
+    "close": "Close",
+    "closePanel": "Close project panel"
+  },
   "process": {
     "subtitle": "How we work",
     "title": "OUR PHASES",

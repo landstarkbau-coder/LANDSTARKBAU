@@ -87,6 +87,43 @@
     "brandbookTitle": "НАШ БРЕНДБУК",
     "brandbookDesc": "Як нас впізнати – наші кольори, наш логотип, наш стиль."
   },
+  "map": {
+    "subtitle": "Географія нашої роботи",
+    "title": "Наші проєкти по всій Німеччині",
+    "description": "Дослідіть реалізовані проєкти на інтерактивній карті.",
+    "selectCity": "Виберіть місто на карті",
+    "selectCityDesc": "Натисніть на маркер, щоб побачити проєкти.",
+    "projectsCount": "проєктів",
+
+    "loading": "Завантаження проєктів...",
+    "errorTitle": "Не вдалося завантажити проєкти",
+    "errorDesc": "Будь ласка, спробуйте пізніше.",
+    "tryAgain": "Спробувати ще раз",
+
+    "mapHeaderTitle": "Локації проєктів",
+    "mapHeaderSubtitle": "Німеччина · Інтерактивна карта",
+    "citiesCount": "{count} міст",
+    "cityAriaLabel": "{city}: {count} проєктів",
+
+    "legendProjectLocations": "Локації проєктів",
+    "legendNumberProjects": "Кількість проєктів",
+    "legendSelectedCity": "Вибране місто",
+
+    "sidebarEyebrow": "Дослідіть нашу роботу",
+    "sidebarTitle": "Наші проєкти",
+    "projectsCountInCity": "{count} проєктів",
+    "clearSelection": "Скинути вибір",
+    "browseByLocation": "Огляд за локацією",
+    "exploreMap": "Дослідіть карту",
+
+    "projectNumber": "ПРОЄКТ #{number}",
+    "mappedProjects": "{count} проєктів на карті",
+    "unlocatedProjects": "+{count} без локації",
+
+    "selectedLocation": "Вибрана локація",
+    "close": "Закрити",
+    "closePanel": "Закрити панель проєктів"
+  },
   "process": {
     "subtitle": "Як ми працюємо",
     "title": "НАШІ ЕТАПИ",

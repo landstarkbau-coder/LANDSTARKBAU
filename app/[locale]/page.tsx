@@ -11,6 +11,7 @@ import { TestimonialsSection } from './components/TestimonialsSection'
 import { FAQSection } from './components/FAQSection'
 import { ContactSection } from './components/ContactSection'
 import { CleaningSection } from './components/CleaningSection'
+import { ProjectMap } from './components/ProjectMap';
 
 export async function generateMetadata({ 
   params 
@@ -36,6 +37,7 @@ export default function Home() {
       <ServicesSection />
       <CleaningSection/>
       <AboutSection />
+      <ProjectMap/>
       <ProcessSection />
       <TestimonialsSection />
       <FAQSection />

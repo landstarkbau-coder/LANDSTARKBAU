@@ -88,6 +88,43 @@
     "brandbookTitle": "UNSER BRENDBUCH",
     "brandbookDesc": "So erkennen Sie uns – unsere Farben, unser Logo, unser Stil."
   },
+  "map": {
+    "subtitle": "Die Geografie unserer Arbeit",
+    "title": "Unsere Projekte in ganz Deutschland",
+    "description": "Entdecken Sie realisierte Projekte auf der interaktiven Karte.",
+    "selectCity": "Wählen Sie eine Stadt auf der Karte",
+    "selectCityDesc": "Klicken Sie auf einen Marker, um die Projekte zu sehen.",
+    "projectsCount": "Projekte",
+
+    "loading": "Projekte werden geladen...",
+    "errorTitle": "Projekte konnten nicht geladen werden",
+    "errorDesc": "Bitte versuchen Sie es später erneut.",
+    "tryAgain": "Erneut versuchen",
+
+    "mapHeaderTitle": "Projektstandorte",
+    "mapHeaderSubtitle": "Deutschland · Interaktive Karte",
+    "citiesCount": "{count} Städte",
+    "cityAriaLabel": "{city}: {count} Projekte",
+
+    "legendProjectLocations": "Projektstandorte",
+    "legendNumberProjects": "Anzahl der Projekte",
+    "legendSelectedCity": "Ausgewählte Stadt",
+
+    "sidebarEyebrow": "Entdecken Sie unsere Arbeit",
+    "sidebarTitle": "Unsere Projekte",
+    "projectsCountInCity": "{count} Projekte",
+    "clearSelection": "Auswahl aufheben",
+    "browseByLocation": "Nach Standort durchsuchen",
+    "exploreMap": "Karte erkunden",
+
+    "projectNumber": "PROJEKT #{number}",
+    "mappedProjects": "{count} kartierte Projekte",
+    "unlocatedProjects": "+{count} ohne Standort",
+
+    "selectedLocation": "Ausgewählter Standort",
+    "close": "Schließen",
+    "closePanel": "Projektfenster schließen"
+  },
   "process": {
     "subtitle": "So arbeiten wir",
     "title": "UNSERE PHASEN",
