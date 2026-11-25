@@ -409,24 +409,23 @@ export function ProjectMap() {
                         const isHovered = hoveredRegion === regionName
 
                         return (
-                          <Geography
-                            key={geo.rsmKey}
-                            geography={geo}
-                            onMouseEnter={() => setHoveredRegion(regionName)}
-                            onMouseLeave={() => setHoveredRegion(null)}
-                            fill={
-                              isHovered
-                                ? 'var(--surface-card-hover)'
-                                : 'var(--surface-2)'
-                            }
-                            stroke="var(--line-strong)"
-                            strokeWidth={1.1}
-                            style={{
-                              default: { outline: 'none', transition: 'all 250ms ease' },
-                              hover: { outline: 'none', fill: 'var(--surface-card-hover)' },
-                              pressed: { outline: 'none' },
-                            }}
-                          />
+                       <Geography
+  key={geo.rsmKey}
+  geography={geo}
+  onMouseEnter={() => setHoveredRegion(regionName)}
+  onMouseLeave={() => setHoveredRegion(null)}
+  fill={
+    isHovered
+      ? 'var(--surface-card-hover)'
+      : 'var(--surface-2)'
+  }
+  stroke="var(--line-strong)"
+  strokeWidth={1.1}
+  style={{
+    outline: 'none',
+    transition: 'all 250ms ease',
+  }}
+/>
                         )
                       })
                     }
