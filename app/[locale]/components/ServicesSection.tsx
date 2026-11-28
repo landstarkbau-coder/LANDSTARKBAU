@@ -6,22 +6,10 @@ import { useTranslations } from 'next-intl'
 import { ImageGallery } from './ImageGallery'
 import { ImageLightbox } from './ImageLightbox'
 
-// 🔧 ТИМЧАСОВО: спільна галерея для всіх послуг.
-// Замініть на реальні фото кожної послуги, коли будуть готові:
-//   gallery: ['/services/pflasterarbeiten/1.jpg', ...]
-const DEFAULT_GALLERY = [
-  '/brandbook1.jpg',
-  '/brandbook2.jpg',
-  '/brandbook3.jpg',
-  '/brandbook4.jpg',
-  '/brandbook5.jpg',
-]
-
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [openServiceId, setOpenServiceId] = useState<string | null>(null)
-  // Один лайтбокс на всю секцію (а не 16 окремих)
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const t = useTranslations('services')
@@ -45,22 +33,14 @@ export function ServicesSection() {
   }, [])
 
   // ВСІ послуги з JSON (16 сервісів)
-  // Поле `gallery` — опційне; якщо не задане, використовується DEFAULT_GALLERY.
+  // Поле `gallery` — масив шляхів до фото.
+  // Якщо масив порожній — кнопка "Mehr" і акордеон не показуються.
   const allServices = [
     {
       id: '1',
-      title: t('pflasterarbeiten'),
-      description: t('pflasterarbeitenDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4h16v4H4V4zm0 6h16v4H4v-4zm0 6h16v4H4v-4z" />
-        </svg>
-      ),
-    },
-    {
-      id: '2',
       title: t('randsteine'),
       description: t('randsteineDesc'),
+      gallery: ['/services/service_1/i1.jpeg','/services/service_1/i2.jpeg','/services/service_1/i3.jpeg','/services/service_1/i4.jpeg'] as string[], // TODO: '/services/randsteine/1.jpg', ...
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 20h16M4 4h16M4 8h16M4 12h16M4 16h16" />
@@ -68,49 +48,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '3',
-      title: t('gelandeplanung'),
-      description: t('gelandeplanungDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-      ),
-    },
-    {
-      id: '4',
-      title: t('grundstucksreinigung'),
-      description: t('grundstucksreinigungDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-        </svg>
-      ),
-    },
-    {
-      id: '5',
-      title: t('entwasserung'),
-      description: t('entwasserungDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 14.899A7 7 0 119 21h-5a2 2 0 01-2-2v-4.101zM12 3l1 1-1 1-1-1 1-1zM15 6l1 1-1 1-1-1 1-1zM18 9l1 1-1 1-1-1 1-1z" />
-        </svg>
-      ),
-    },
-    {
-      id: '6',
-      title: t('terrassenbau'),
-      description: t('terrassenbauDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1M5 21v-4M19 21v-4" />
-        </svg>
-      ),
-    },
-    {
-      id: '7',
+      id: '2',
       title: t('zaunbau'),
       description: t('zaunbauDesc'),
+      gallery: ['/services/service_2/i1.jpeg','/services/service_2/i2.jpeg','/services/service_2/i3.jpeg','/services/service_2/i4.jpeg'] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
@@ -118,29 +59,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '8',
-      title: t('rollrasen'),
-      description: t('rollrasenDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 4h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1zM5 14h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2a1 1 0 011-1zM3 9h18M3 19h18" />
-        </svg>
-      ),
-    },
-    {
-      id: '9',
-      title: t('hochdruckreinigung'),
-      description: t('hochdruckreinigungDesc'),
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 12H4M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4" />
-        </svg>
-      ),
-    },
-    {
-      id: '10',
+      id: '3',
       title: t('gehölzschnitt'),
       description: t('gehölzschnittDesc'),
+      gallery: ['/services/service_3/i1.jpeg','/services/service_3/i2.jpeg','/services/service_3/i3.jpeg'] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
@@ -148,9 +70,76 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '11',
+      id: '4',
+      title: t('entwasserung'),
+      description: t('entwasserungDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 14.899A7 7 0 119 21h-5a2 2 0 01-2-2v-4.101zM12 3l1 1-1 1-1-1 1-1zM15 6l1 1-1 1-1-1 1-1zM18 9l1 1-1 1-1-1 1-1z" />
+        </svg>
+      ),
+    },
+    {
+      id: '5',
+      title: t('terrassenbau'),
+      description: t('terrassenbauDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1M5 21v-4M19 21v-4" />
+        </svg>
+      ),
+    },
+ {
+      id: '6',
+      title: t('gelandeplanung'),
+      description: t('gelandeplanungDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      ),
+    },
+    {
+      id: '7',
+      title: t('rollrasen'),
+      description: t('rollrasenDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 4h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1zM5 14h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2a1 1 0 011-1zM3 9h18M3 19h18" />
+        </svg>
+      ),
+    },
+    {
+      id: '8',
+      title: t('hochdruckreinigung'),
+      description: t('hochdruckreinigungDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 12H4M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4" />
+        </svg>
+      ),
+    },
+    {
+      id: '9',
+      title: t('grundstucksreinigung'),
+      description: t('grundstucksreinigungDesc'),
+      gallery: [] as string[],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+      ),
+    },
+    {
+      id: '10',
       title: t('materiallieferung'),
       description: t('materiallieferungDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -158,9 +147,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '12',
+      id: '11',
       title: t('geratevermietung'),
       description: t('geratevermietungDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -169,9 +159,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '13',
+      id: '12',
       title: t('3d_visualisierung'),
       description: t('3d_visualisierungDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -179,9 +170,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '14',
+      id: '13',
       title: t('entsorgung'),
       description: t('entsorgungDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7h16M4 7V4h16v3M4 7v10a2 2 0 002 2h12a2 2 0 002-2V7M8 12h8" />
@@ -189,9 +181,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '15',
+      id: '14',
       title: t('aussenbeleuchtung'),
       description: t('aussenbeleuchtungDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -199,9 +192,10 @@ export function ServicesSection() {
       ),
     },
     {
-      id: '16',
+      id: '15',
       title: t('gartenmobel'),
       description: t('gartenmobelDesc'),
+      gallery: [] as string[],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 20h16M4 4h16M4 8h16M4 12h16M4 16h16M12 4v16M8 4v16M16 4v16" />
@@ -210,7 +204,6 @@ export function ServicesSection() {
     },
   ]
 
-  // Перші 6 для початкового показу
   const initialServices = allServices.slice(0, 6)
   const hiddenServices = allServices.slice(6)
 
@@ -221,7 +214,7 @@ export function ServicesSection() {
   // Рендер однієї картки послуги
   const renderServiceCard = (service: (typeof allServices)[0], idx: number) => {
     const isOpen = openServiceId === service.id
-    const gallery = (service as { gallery?: string[] }).gallery || DEFAULT_GALLERY
+    const hasGallery = service.gallery.length > 0
 
     return (
       <div
@@ -237,9 +230,12 @@ export function ServicesSection() {
         {/* Кнопка-заголовок акордеону */}
         <button
           type="button"
-          onClick={() => toggleService(service.id)}
-          aria-expanded={isOpen}
-          className="w-full text-left p-6 flex flex-col items-center"
+          onClick={() => hasGallery && toggleService(service.id)}
+          aria-expanded={hasGallery ? isOpen : undefined}
+          disabled={!hasGallery}
+          className={`w-full text-left p-6 flex flex-col items-center ${
+            !hasGallery ? 'cursor-default' : ''
+          }`}
         >
           <div className="transition-all duration-500 mb-4 flex justify-center text-ink-muted group-hover:text-ink">
             {service.icon}
@@ -247,41 +243,45 @@ export function ServicesSection() {
           <h3 className="font-semibold text-lg mb-2 text-center text-ink">
             {service.title}
           </h3>
-          <p className="text-sm leading-relaxed text-center transition-colors text-ink-muted group-hover:text-ink-2 mb-4">
+          <p className={`text-sm leading-relaxed text-center transition-colors text-ink-muted group-hover:text-ink-2 ${hasGallery ? 'mb-4' : ''}`}>
             {service.description}
           </p>
 
-          {/* Кнопка "Mehr über die Leistung" — локалізована */}
-          <span className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-brand/10 text-ink-2 group-hover:bg-brand/20 group-hover:text-ink">
-            <span>{isOpen ? t('lessService') : t('moreService')}</span>
-            <svg
-              className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </span>
+          {/* Кнопка "Mehr über die Leistung" — тільки якщо є фото */}
+          {hasGallery && (
+            <span className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm tracking-wider transition-all duration-300 bg-brand/10 text-ink-2 group-hover:bg-brand/20 group-hover:text-ink">
+              <span>{isOpen ? t('lessService') : t('moreService')}</span>
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          )}
         </button>
 
-        {/* Акордеон-контент: галерея */}
-        <div
-          className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
-            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="overflow-hidden">
-            <div className="px-4 pb-5 pt-2 border-t border-line">
-              <ImageGallery
-                images={gallery}
-                onImageClick={(index) => setLightbox({ images: gallery, index })}
-                altPrefix={service.title}
-                columns={2}
-              />
+        {/* Акордеон-контент: галерея — тільки якщо є фото */}
+        {hasGallery && (
+          <div
+            className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+              isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+            }`}
+          >
+            <div className="overflow-hidden">
+              <div className="px-4 pb-5 pt-2 border-t border-line">
+                <ImageGallery
+                  images={service.gallery}
+                  onImageClick={(index) => setLightbox({ images: service.gallery, index })}
+                  altPrefix={service.title}
+                  columns={2}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Декоративна нижня лінія при hover (не показуємо, коли відкрито) */}
         {!isOpen && (
@@ -298,7 +298,6 @@ export function ServicesSection() {
         ref={sectionRef}
         className="relative py-16 md:py-24 overflow-hidden bg-surface"
       >
-
         {/* Анімовані геометричні фігури */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -left-40 w-80 h-80 bg-line-subtle rounded-full blur-3xl animate-pulse" />
@@ -311,7 +310,6 @@ export function ServicesSection() {
           </svg>
         </div>
 
-        {/* Тонка сітка — через currentColor */}
         <div
           className="absolute inset-0 opacity-10 text-ink pointer-events-none"
           style={{
@@ -321,7 +319,6 @@ export function ServicesSection() {
         />
 
         <div className="relative container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 z-10">
-
           {/* Заголовок секції */}
           <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="text-lg tracking-[0.3em] uppercase mb-3 text-ink-muted">
@@ -370,13 +367,9 @@ export function ServicesSection() {
               </svg>
             </button>
           </div>
-
         </div>
-
       </section>
 
-      {/* Lightbox — один на всю секцію, рендериться через Portal у <body>,
-          тому перекриває хедер, StickyContact і будь-що інше. */}
       <ImageLightbox
         images={lightbox?.images ?? []}
         openIndex={lightbox ? lightbox.index : null}
