@@ -108,7 +108,7 @@ export default function ProjectDetailClient() {
 
         {/* Заголовок проекту */}
         <div className="mb-10">
-          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink-muted">
+          <p className="text-sm tracking-[0.3em] uppercase mb-3 text-ink">
             {project.location}
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 text-ink">

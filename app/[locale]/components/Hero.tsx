@@ -118,7 +118,7 @@ export function Hero() {
           animation: 'backgroundShake 30s ease-in-out infinite alternate',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70 md:to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/50 md:to-black/40" />
       </div>
 
       {/* Основний контент */}
@@ -131,9 +131,9 @@ export function Hero() {
             <p className="text-white/90 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-3 md:mb-4">
               {activeProject.location}
             </p>
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight break-words drop-shadow-lg">
-              {activeProject.name}
-            </h1>
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-bold leading-[1.1] tracking-tight break-words drop-shadow-lg bg-gradient-to-b from-gray-100 via-gray-400 to-gray-600 bg-clip-text text-transparent">
+  {activeProject.name}
+</h1>
             <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl mt-3 sm:mt-4 md:mt-5 lg:mt-6 max-w-full lg:max-w-lg leading-relaxed drop-shadow">
               {activeProject.description}
             </p>
